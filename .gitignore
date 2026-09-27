@@ -1,0 +1,76 @@
+# =========================================
+# InfraLens Japan — .gitignore
+# =========================================
+
+# ---- Node.js ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Vite / frontend build output ----
+dist/
+dist-ssr/
+build/
+.vite/
+
+# ---- Logs ----
+*.log
+logs/
+crash.log
+
+# ---- Test coverage ----
+coverage/
+.nyc_output/
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---- Windows ----
+Thumbs.db
+ehthumbs.db
+
+# ---- Terraform ----
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored.
+# It should be committed to ensure consistent provider versions.
+
+# ---- Python (reserved for future tooling, e.g. Checkov) ----
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# ---- Misc ----
+*.bak
+*.tmp
