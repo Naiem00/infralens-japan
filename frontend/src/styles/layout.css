@@ -1,0 +1,52 @@
+/* Application shell + reusable spacing patterns. */
+
+.app-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1 0 auto;
+  padding-block: var(--space-6);
+}
+
+/* main is focusable (tabindex="-1") only so the skip link can land on it. */
+.app-main:focus {
+  outline: none;
+}
+
+@media (min-width: 64rem) {
+  .app-main {
+    padding-block: var(--space-10);
+  }
+}
+
+/* Vertical rhythm: children are separated by a consistent gap. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, var(--space-6));
+}
+.stack--sm {
+  --stack-gap: var(--space-3);
+}
+.stack--lg {
+  --stack-gap: var(--space-10);
+}
+
+/* Horizontal group that wraps on narrow screens. */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, var(--space-3));
+}
+
+/* Responsive card grid: as many columns as fit, one column at 375px. */
+.grid-auto {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}

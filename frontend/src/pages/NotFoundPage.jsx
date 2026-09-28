@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Button, Card, SectionHeader } from '../components/ui/index.js';
 
 function NotFoundPage() {
   return (
-    <section>
-      <h1>404 — Page Not Found</h1>
-      <p>
-        <Link to="/">Return to Dashboard</Link>
-      </p>
-    </section>
+    <div className="stack">
+      <SectionHeader level={1} title="404 — Page Not Found" description="That page does not exist." />
+      <Card>
+        <Button to="/">Return to Dashboard</Button>
+      </Card>
+    </div>
   );
 }
 

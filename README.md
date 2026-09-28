@@ -83,8 +83,8 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | Area | Status |
 |---|---|
 | Repository scaffold | ✅ Done (Day 1) |
-| Frontend setup | ⏳ Not yet implemented |
-| Design system | ⏳ Not yet implemented |
+| Frontend setup (Vite, React Router, base layout) | ✅ Done (Day 2) |
+| Design system & responsive shell | ✅ Done (Day 3) |
 | Bilingual (i18next) | ⏳ Not yet implemented |
 | Dashboard UI | ⏳ Not yet implemented |
 | Architecture Analyzer | ⏳ Not yet implemented |

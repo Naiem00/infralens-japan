@@ -1,16 +1,22 @@
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/Footer.jsx';
 import Navbar from '../components/Navbar.jsx';
+import SkipLink from '../components/SkipLink.jsx';
+import { PageContainer } from '../components/ui/index.js';
 
-// Shared shell for every route: top navigation + main content area.
-// This is the "base layout" — it does not yet include the full design
-// system (sidebar, theming, etc.), which arrives in Day 3.
+// Responsive application shell shared by every route:
+// skip link -> header/navigation -> <main> (routed page) -> footer.
 function MainLayout() {
   return (
     <div className="app-shell">
+      <SkipLink />
       <Navbar />
-      <main className="app-content">
-        <Outlet />
+      <main id="main-content" className="app-main" tabIndex={-1}>
+        <PageContainer>
+          <Outlet />
+        </PageContainer>
       </main>
+      <Footer />
     </div>
   );
 }

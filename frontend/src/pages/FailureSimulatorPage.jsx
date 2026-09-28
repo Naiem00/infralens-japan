@@ -1,10 +1,12 @@
+import PlaceholderPage from '../components/PlaceholderPage.jsx';
+
 // Planned in Day 10: EC2/ECS/RDS/AZ failure scenarios and impact analysis.
 function FailureSimulatorPage() {
   return (
-    <section>
-      <h1>Failure Simulator</h1>
-      <p>Planned — not yet implemented.</p>
-    </section>
+    <PlaceholderPage
+      title="Failure Simulator"
+      description="Simulate infrastructure failures and see which parts of the system are affected."
+    />
   );
 }
 

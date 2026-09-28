@@ -1,0 +1,96 @@
+/* =========================================================
+   InfraLens Japan — design tokens
+   This is the ONLY file that contains raw color values.
+   Every other stylesheet must reference var(--token).
+   ========================================================= */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Palette (project design system) ---- */
+  --bg-primary: #0f1117;
+  --bg-secondary: #1a1d27;
+  --bg-card: #21242f;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --border: #2d3140;
+
+  /* ---- Derived colors (computed from the palette, no new hues) ---- */
+  --focus-ring: var(--accent);
+  --surface-hover: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  --surface-active: color-mix(in srgb, var(--accent) 16%, transparent);
+  /* --accent alone is only 4.2:1 on --bg-card, so link text is lightened slightly (passes AA on every surface). */
+  --link-color: color-mix(in srgb, var(--accent) 80%, var(--text-primary));
+  --link-color-hover: color-mix(in srgb, var(--accent) 55%, var(--text-primary));
+  --shadow-color: color-mix(in srgb, var(--bg-primary) 80%, transparent);
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI',
+    'Hiragino Sans', 'Yu Gothic UI', Meiryo, sans-serif;
+  --font-sans-ja: 'Noto Sans JP', 'Inter', 'Hiragino Sans', 'Yu Gothic UI',
+    Meiryo, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-h1: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75; /* Japanese text reads better with more line spacing */
+
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* ---- Shape, motion, layers ---- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 999px;
+  --transition-fast: 150ms ease;
+  --z-header: 100;
+  --z-skip-link: 200;
+
+  /* ---- Layout ---- */
+  --container-max: 72rem;
+  --container-narrow: 48rem;
+  --header-height: 3.5rem;
+  --tap-target: 2.75rem; /* 44px minimum touch target */
+  --gutter: var(--space-4);
+}
+
+/* Mobile-first: gutter grows with viewport. (Media queries cannot read var(), so rem literals are used.) */
+@media (min-width: 40rem) {
+  :root {
+    --gutter: var(--space-6);
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --gutter: var(--space-8);
+  }
+}

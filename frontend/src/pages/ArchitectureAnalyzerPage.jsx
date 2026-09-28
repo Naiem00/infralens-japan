@@ -1,10 +1,12 @@
+import PlaceholderPage from '../components/PlaceholderPage.jsx';
+
 // Planned in Day 6+: AWS service selector and configuration interface.
 function ArchitectureAnalyzerPage() {
   return (
-    <section>
-      <h1>Architecture Analyzer</h1>
-      <p>Planned — not yet implemented.</p>
-    </section>
+    <PlaceholderPage
+      title="Architecture Analyzer"
+      description="Configure an AWS-style architecture and get explainable feedback."
+    />
   );
 }
 

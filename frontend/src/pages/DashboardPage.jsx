@@ -1,10 +1,12 @@
+import PlaceholderPage from '../components/PlaceholderPage.jsx';
+
 // Planned in Day 5: activity cards, score history chart, sample data.
 function DashboardPage() {
   return (
-    <section>
-      <h1>Dashboard</h1>
-      <p>Planned — not yet implemented.</p>
-    </section>
+    <PlaceholderPage
+      title="Dashboard"
+      description="Architecture activity, assessment scores and score history will appear here."
+    />
   );
 }
 
