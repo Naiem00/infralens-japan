@@ -1,0 +1,101 @@
+{
+  "brand": {
+    "name": "InfraLens",
+    "region": "Japan"
+  },
+  "common": {
+    "planned": "Planned",
+    "notImplemented": "This feature is planned and not yet implemented.",
+    "sampleData": "Sample Data / サンプルデータ"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "primaryLabel": "Primary",
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "analyzer": "Architecture Analyzer",
+    "failureSimulator": "Failure Simulator",
+    "serviceCompare": "Service Compare",
+    "costCalculator": "Cost Calculator",
+    "productionReadiness": "Production Readiness"
+  },
+  "language": {
+    "switcherLabel": "Language",
+    "options": {
+      "en": "English (EN)",
+      "ja": "日本語 (JP)"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Naiem Naimur Rahman",
+    "disclaimer": "Independent portfolio project. Not affiliated with, endorsed by, or sponsored by Amazon Web Services (AWS)."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Architecture activity, assessment scores and score history will appear here."
+  },
+  "architectureAnalyzer": {
+    "title": "Architecture Analyzer",
+    "description": "Configure an AWS-style architecture and get explainable feedback."
+  },
+  "failureSimulator": {
+    "title": "Failure Simulator",
+    "description": "Simulate infrastructure failures and see which parts of the system are affected."
+  },
+  "serviceCompare": {
+    "title": "AWS Service Compare",
+    "description": "Compare AWS services by real architectural trade-offs."
+  },
+  "costCalculator": {
+    "title": "Cost Calculator",
+    "description": "Simplified monthly cost estimates in JPY (sample estimates only)."
+  },
+  "productionReadiness": {
+    "title": "Production Readiness Checklist",
+    "description": "Check an architecture against security, reliability, monitoring and operations practices."
+  },
+  "notFound": {
+    "title": "404 — Page Not Found",
+    "description": "That page does not exist.",
+    "backToDashboard": "Return to Dashboard"
+  },
+  "designSystem": {
+    "title": "Design System",
+    "description": "Developer preview of tokens and reusable components. Available in development only.",
+    "devOnly": "Dev only",
+    "sections": {
+      "colors": "Color tokens",
+      "typography": "Typography",
+      "buttons": "Buttons",
+      "badges": "Badges",
+      "stats": "Stat cards"
+    },
+    "typography": {
+      "sample": "Assess your AWS architecture for reliability, security and cost."
+    },
+    "buttons": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "ghost": "Ghost",
+      "small": "Small",
+      "disabled": "Disabled",
+      "link": "Link button"
+    },
+    "badges": {
+      "neutral": "Neutral",
+      "info": "Info",
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error"
+    },
+    "stats": {
+      "description": "Values below are fictional sample data.",
+      "architecturesCreated": "Architectures Created",
+      "averageScore": "Average Score",
+      "savedDesigns": "Saved Designs",
+      "sampleValue": "Sample value"
+    }
+  }
+}

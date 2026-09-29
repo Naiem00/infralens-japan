@@ -1,0 +1,101 @@
+{
+  "brand": {
+    "name": "InfraLens",
+    "region": "Japan"
+  },
+  "common": {
+    "planned": "計画中",
+    "notImplemented": "この機能は計画中で、まだ実装されていません。",
+    "sampleData": "サンプルデータ / Sample Data"
+  },
+  "a11y": {
+    "skipToContent": "メインコンテンツへスキップ"
+  },
+  "nav": {
+    "primaryLabel": "メインナビゲーション",
+    "menu": "メニュー",
+    "dashboard": "ダッシュボード",
+    "analyzer": "アーキテクチャ分析",
+    "failureSimulator": "障害シミュレーター",
+    "serviceCompare": "サービス比較",
+    "costCalculator": "コスト見積もり",
+    "productionReadiness": "本番運用準備"
+  },
+  "language": {
+    "switcherLabel": "言語",
+    "options": {
+      "en": "English (EN)",
+      "ja": "日本語 (JP)"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Naiem Naimur Rahman",
+    "disclaimer": "個人のポートフォリオ作品です。Amazon Web Services（AWS）とは提携・承認・後援の関係にありません。"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "description": "アーキテクチャの作成状況、診断スコア、スコア履歴がここに表示されます。"
+  },
+  "architectureAnalyzer": {
+    "title": "アーキテクチャ分析",
+    "description": "AWSのアーキテクチャを構成し、根拠の分かるフィードバックを受け取れます。"
+  },
+  "failureSimulator": {
+    "title": "障害シミュレーター",
+    "description": "インフラ障害をシミュレートし、影響を受ける範囲を確認できます。"
+  },
+  "serviceCompare": {
+    "title": "AWSサービス比較",
+    "description": "AWSサービスを、設計上の実際のトレードオフから比較できます。"
+  },
+  "costCalculator": {
+    "title": "コスト見積もり",
+    "description": "月額コストの簡易見積もりを円で表示します（サンプル見積もりのみ）。"
+  },
+  "productionReadiness": {
+    "title": "本番運用準備チェックリスト",
+    "description": "セキュリティ・信頼性・モニタリング・運用の観点で、アーキテクチャを確認できます。"
+  },
+  "notFound": {
+    "title": "404 — ページが見つかりません",
+    "description": "お探しのページは存在しません。",
+    "backToDashboard": "ダッシュボードに戻る"
+  },
+  "designSystem": {
+    "title": "デザインシステム",
+    "description": "デザイントークンと再利用可能なコンポーネントの開発者向けプレビューです。開発環境でのみ利用できます。",
+    "devOnly": "開発用",
+    "sections": {
+      "colors": "カラートークン",
+      "typography": "タイポグラフィ",
+      "buttons": "ボタン",
+      "badges": "バッジ",
+      "stats": "統計カード"
+    },
+    "typography": {
+      "sample": "AWSアーキテクチャの信頼性・セキュリティ・コスト効率を診断します。"
+    },
+    "buttons": {
+      "primary": "プライマリ",
+      "secondary": "セカンダリ",
+      "ghost": "ゴースト",
+      "small": "小",
+      "disabled": "無効",
+      "link": "リンクボタン"
+    },
+    "badges": {
+      "neutral": "標準",
+      "info": "情報",
+      "success": "成功",
+      "warning": "警告",
+      "error": "エラー"
+    },
+    "stats": {
+      "description": "以下の数値は架空のサンプルデータです。",
+      "architecturesCreated": "作成したアーキテクチャ",
+      "averageScore": "平均スコア",
+      "savedDesigns": "保存済みの設計",
+      "sampleValue": "サンプル値"
+    }
+  }
+}

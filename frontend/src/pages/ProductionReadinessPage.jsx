@@ -4,10 +4,7 @@ import PlaceholderPage from '../components/PlaceholderPage.jsx';
 // operations checklist with a readiness percentage.
 function ProductionReadinessPage() {
   return (
-    <PlaceholderPage
-      title="Production Readiness Checklist"
-      description="Check an architecture against security, reliability, monitoring and operations practices."
-    />
+    <PlaceholderPage titleKey="productionReadiness.title" descriptionKey="productionReadiness.description" />
   );
 }
 

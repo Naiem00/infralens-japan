@@ -1,15 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import PageContainer from './ui/PageContainer.jsx';
 import './Footer.css';
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="site-footer">
       <PageContainer className="site-footer__inner">
-        <p>© 2026 Naiem Naimur Rahman</p>
-        <p>
-          Independent portfolio project. Not affiliated with, endorsed by, or sponsored by Amazon Web
-          Services (AWS).
-        </p>
+        <p>{t('footer.copyright')}</p>
+        <p>{t('footer.disclaimer')}</p>
       </PageContainer>
     </footer>
   );

@@ -1,11 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import { Button, Card, SectionHeader } from '../components/ui/index.js';
 
 function NotFoundPage() {
+  const { t } = useTranslation();
   return (
     <div className="stack">
-      <SectionHeader level={1} title="404 — Page Not Found" description="That page does not exist." />
+      <SectionHeader level={1} title={t('notFound.title')} description={t('notFound.description')} />
       <Card>
-        <Button to="/">Return to Dashboard</Button>
+        <Button to="/">{t('notFound.backToDashboard')}</Button>
       </Card>
     </div>
   );

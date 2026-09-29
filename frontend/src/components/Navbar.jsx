@@ -1,18 +1,19 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
+import LanguageSwitcher from './LanguageSwitcher.jsx';
 import PageContainer from './ui/PageContainer.jsx';
 import { classNames } from '../utils/classNames.js';
 import './Navbar.css';
 
-// Single source of truth for navigation. Labels are plain English for now;
-// Day 4 replaces them (and the aria/label strings below) with i18next keys.
+// Route -> translation key. Order here is the visual nav order.
 const navItems = [
-  { to: '/', label: 'Dashboard', end: true },
-  { to: '/analyzer', label: 'Architecture Analyzer' },
-  { to: '/failure-simulator', label: 'Failure Simulator' },
-  { to: '/compare', label: 'Service Compare' },
-  { to: '/cost-calculator', label: 'Cost Calculator' },
-  { to: '/readiness', label: 'Production Readiness' },
+  { to: '/', labelKey: 'nav.dashboard', end: true },
+  { to: '/analyzer', labelKey: 'nav.analyzer' },
+  { to: '/failure-simulator', labelKey: 'nav.failureSimulator' },
+  { to: '/compare', labelKey: 'nav.serviceCompare' },
+  { to: '/cost-calculator', labelKey: 'nav.costCalculator' },
+  { to: '/readiness', labelKey: 'nav.productionReadiness' },
 ];
 
 function MenuIcon({ open }) {
@@ -45,6 +46,7 @@ function MenuIcon({ open }) {
 }
 
 function Navbar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef(null);
 
@@ -62,25 +64,29 @@ function Navbar() {
     <header className="site-header" onKeyDown={handleKeyDown}>
       <PageContainer className="site-header__inner">
         <Link to="/" className="site-header__brand" onClick={closeMenu}>
-          InfraLens <span className="site-header__brand-region">Japan</span>
+          {t('brand.name')} <span className="site-header__brand-region">{t('brand.region')}</span>
         </Link>
 
-        <button
-          ref={toggleRef}
-          type="button"
-          className="nav-toggle"
-          aria-expanded={isOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setIsOpen((open) => !open)}
-        >
-          <MenuIcon open={isOpen} />
-          <span>Menu</span>
-        </button>
+        <div className="site-header__controls">
+          <LanguageSwitcher />
+
+          <button
+            ref={toggleRef}
+            type="button"
+            className="nav-toggle"
+            aria-expanded={isOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setIsOpen((open) => !open)}
+          >
+            <MenuIcon open={isOpen} />
+            <span>{t('nav.menu')}</span>
+          </button>
+        </div>
 
         <nav
           id="primary-navigation"
           className={classNames('site-nav', isOpen && 'is-open')}
-          aria-label="Primary"
+          aria-label={t('nav.primaryLabel')}
         >
           <ul className="site-nav__list">
             {navItems.map((item) => (
@@ -91,7 +97,7 @@ function Navbar() {
                   onClick={closeMenu}
                   className={({ isActive }) => classNames('site-nav__link', isActive && 'is-active')}
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </NavLink>
               </li>
             ))}

@@ -1,0 +1,40 @@
+.lang-switch {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+.lang-switch__option {
+  min-width: 2.75rem;
+  min-height: 2.25rem;
+  padding: var(--space-1) var(--space-2);
+  border: none;
+  border-radius: calc(var(--radius-md) - 2px);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.lang-switch__option:hover:not(:disabled) {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+/* Active state is shown by fill + weight, not color alone; disabled (not clickable
+   on itself) also communicates "this is the current language" non-visually. */
+.lang-switch__option.is-active {
+  background: var(--accent);
+  color: var(--bg-primary);
+  cursor: default;
+}
+
+.lang-switch__option:disabled {
+  opacity: 1;
+}

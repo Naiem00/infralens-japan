@@ -8,9 +8,10 @@
 
 .site-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: var(--space-3) var(--space-4);
   min-height: var(--header-height);
 }
 
@@ -29,6 +30,12 @@
 .site-header__brand-region {
   color: var(--text-secondary);
   font-weight: var(--weight-medium);
+}
+
+.site-header__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
 /* ---- Mobile menu toggle (hidden on desktop) ---- */
@@ -112,6 +119,24 @@
     display: none;
   }
 
+  /* Visual order (brand, nav, controls) reads naturally left-to-right; DOM/tab
+     order stays (brand, controls, nav) so the mobile toggle sits next to the
+     brand without duplicating markup for two breakpoints. */
+  .site-nav {
+    order: 2;
+  }
+
+  .site-header__controls {
+    order: 3;
+    margin-inline-start: auto;
+  }
+
+  /* Six nav links + brand + switcher is tight at ~1024-1150px; trim the header's
+     column gap (desktop only) so everything fits on one row instead of wrapping. */
+  .site-header__inner {
+    column-gap: var(--space-2);
+  }
+
   .site-nav,
   .site-nav.is-open {
     display: block;
@@ -129,7 +154,7 @@
 
   .site-nav__link {
     min-height: 2.5rem;
-    padding: var(--space-1) var(--space-3);
+    padding: var(--space-1) var(--space-1);
     border-inline-start: 0;
     border-bottom: 3px solid transparent;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
