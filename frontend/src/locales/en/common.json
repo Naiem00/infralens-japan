@@ -34,7 +34,68 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "description": "Architecture activity, assessment scores and score history will appear here."
+    "description": "Architecture activity, assessment scores and score history will appear here.",
+    "sampleDataNotice": "All figures, charts and assessment history on this dashboard are fictional sample data for demonstration purposes.",
+    "sections": {
+      "overview": "Overview",
+      "scoreByCategory": "Score by Category",
+      "recentAssessments": "Recent Assessments"
+    },
+    "stats": {
+      "architecturesCreated": "Architectures Created",
+      "assessmentsCompleted": "Assessments Completed",
+      "savedDesigns": "Saved Designs",
+      "averageScore": "Average Score"
+    },
+    "charts": {
+      "scoreRadar": {
+        "datasetLabel": "Score",
+        "caption": "Overall score: {{score}} out of 100 across five categories.",
+        "tableCaption": "Score by category (out of 100)"
+      },
+      "assessmentHistory": {
+        "datasetLabel": "Assessment score",
+        "caption": "Latest assessment score: {{score}} out of 100.",
+        "tableCaption": "Assessment score history"
+      },
+      "serviceUsage": {
+        "datasetLabel": "Architectures using this service",
+        "caption": "Most used service: {{service}} ({{count}} architectures).",
+        "tableCaption": "AWS service usage distribution"
+      }
+    },
+    "table": {
+      "category": "Category",
+      "score": "Score",
+      "date": "Date",
+      "service": "Service",
+      "count": "Count",
+      "assessment": "Assessment"
+    },
+    "services": {
+      "ec2": "Amazon EC2",
+      "ecsFargate": "Amazon ECS Fargate",
+      "rdsPostgres": "Amazon RDS (PostgreSQL)",
+      "s3": "Amazon S3",
+      "cloudfront": "Amazon CloudFront",
+      "lambda": "AWS Lambda"
+    },
+    "recentAssessments": {
+      "items": {
+        "sampleWebApp": "Sample Web App",
+        "sampleApiPlatform": "Sample API Platform",
+        "sampleInternalTool": "Sample Internal Tool"
+      }
+    },
+    "scoreTone": {
+      "success": "Good",
+      "warning": "Needs Improvement",
+      "error": "At Risk"
+    },
+    "readiness": {
+      "scoreLabel": "Estimated Readiness",
+      "viewLink": "View Production Readiness Checklist"
+    }
   },
   "architectureAnalyzer": {
     "title": "Architecture Analyzer",
@@ -97,5 +158,12 @@
       "savedDesigns": "Saved Designs",
       "sampleValue": "Sample value"
     }
+  },
+  "categories": {
+    "reliability": "Reliability",
+    "security": "Security",
+    "costEfficiency": "Cost Efficiency",
+    "performance": "Performance",
+    "operations": "Operations"
   }
 }

@@ -86,7 +86,7 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | Frontend setup (Vite, React Router, base layout) | ✅ Done (Day 2) |
 | Design system & responsive shell | ✅ Done (Day 3) |
 | Bilingual (i18next) | ✅ Done (Day 4) |
-| Dashboard UI | ⏳ Not yet implemented |
+| Dashboard UI (stat cards, charts, sample data) | ✅ Done (Day 5) |
 | Architecture Analyzer | ⏳ Not yet implemented |
 | Assessment / Recommendation engine | ⏳ Not yet implemented |
 | Failure Simulator | ⏳ Not yet implemented |

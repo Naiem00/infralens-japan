@@ -1,0 +1,58 @@
+/* Dashboard-specific grid tuning. Reuses .stack/.grid-auto from styles/layout.css;
+   only the chart grid needs a wider minimum column than the default (charts need
+   more room than a stat card to stay legible). */
+.dashboard-charts-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+}
+
+.recent-assessments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.recent-assessments-table th,
+.recent-assessments-table td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  /* Prevent cells (esp. the date column) from wrapping into fragments at narrow
+     widths; .table-scroll's overflow-x:auto lets the whole table scroll instead. */
+  white-space: nowrap;
+}
+
+.recent-assessments-table th[scope='col'] {
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.recent-assessments-table tbody tr:last-child th,
+.recent-assessments-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Keeps the table usable at 375px without breaking the page's own horizontal scroll. */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.readiness-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.readiness-summary__score {
+  flex: none;
+}
+
+.readiness-summary__text {
+  flex: 1 1 16rem;
+  min-width: 0;
+}

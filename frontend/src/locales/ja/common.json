@@ -34,7 +34,68 @@
   },
   "dashboard": {
     "title": "ダッシュボード",
-    "description": "アーキテクチャの作成状況、診断スコア、スコア履歴がここに表示されます。"
+    "description": "アーキテクチャの作成状況、診断スコア、スコア履歴がここに表示されます。",
+    "sampleDataNotice": "このダッシュボードの数値・グラフ・診断履歴はすべて、デモ目的の架空のサンプルデータです。",
+    "sections": {
+      "overview": "概要",
+      "scoreByCategory": "カテゴリ別スコア",
+      "recentAssessments": "最近の診断"
+    },
+    "stats": {
+      "architecturesCreated": "作成したアーキテクチャ",
+      "assessmentsCompleted": "完了した診断",
+      "savedDesigns": "保存した設計",
+      "averageScore": "平均スコア"
+    },
+    "charts": {
+      "scoreRadar": {
+        "datasetLabel": "スコア",
+        "caption": "5つのカテゴリ全体の総合スコアは100点中{{score}}点です。",
+        "tableCaption": "カテゴリ別スコア（100点満点）"
+      },
+      "assessmentHistory": {
+        "datasetLabel": "診断スコア",
+        "caption": "直近の診断スコアは100点中{{score}}点です。",
+        "tableCaption": "診断スコアの推移"
+      },
+      "serviceUsage": {
+        "datasetLabel": "このサービスを利用しているアーキテクチャ数",
+        "caption": "最も多く利用されているサービスは{{service}}（{{count}}件）です。",
+        "tableCaption": "AWSサービスの利用分布"
+      }
+    },
+    "table": {
+      "category": "カテゴリ",
+      "score": "スコア",
+      "date": "日付",
+      "service": "サービス",
+      "count": "件数",
+      "assessment": "診断対象"
+    },
+    "services": {
+      "ec2": "Amazon EC2",
+      "ecsFargate": "Amazon ECS Fargate",
+      "rdsPostgres": "Amazon RDS（PostgreSQL）",
+      "s3": "Amazon S3",
+      "cloudfront": "Amazon CloudFront",
+      "lambda": "AWS Lambda"
+    },
+    "recentAssessments": {
+      "items": {
+        "sampleWebApp": "サンプルWebアプリ",
+        "sampleApiPlatform": "サンプルAPIプラットフォーム",
+        "sampleInternalTool": "サンプル社内ツール"
+      }
+    },
+    "scoreTone": {
+      "success": "良好",
+      "warning": "改善が必要",
+      "error": "要注意"
+    },
+    "readiness": {
+      "scoreLabel": "推定準備度",
+      "viewLink": "本番運用準備チェックリストを見る"
+    }
   },
   "architectureAnalyzer": {
     "title": "アーキテクチャ分析",
@@ -97,5 +158,12 @@
       "savedDesigns": "保存済みの設計",
       "sampleValue": "サンプル値"
     }
+  },
+  "categories": {
+    "reliability": "信頼性",
+    "security": "セキュリティ",
+    "costEfficiency": "コスト効率",
+    "performance": "パフォーマンス",
+    "operations": "運用"
   }
 }
