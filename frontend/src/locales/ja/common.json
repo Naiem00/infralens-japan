@@ -6,7 +6,10 @@
   "common": {
     "planned": "計画中",
     "notImplemented": "この機能は計画中で、まだ実装されていません。",
-    "sampleData": "サンプルデータ / Sample Data"
+    "sampleData": "サンプルデータ / Sample Data",
+    "yes": "はい",
+    "no": "いいえ",
+    "selected": "選択済み"
   },
   "a11y": {
     "skipToContent": "メインコンテンツへスキップ"
@@ -99,7 +102,56 @@
   },
   "architectureAnalyzer": {
     "title": "アーキテクチャ分析",
-    "description": "AWSのアーキテクチャを構成し、根拠の分かるフィードバックを受け取れます。"
+    "description": "AWSのアーキテクチャを構成し、根拠の分かるフィードバックを受け取れます。",
+    "demoNotice": "これはデモ用の設定画面です。選択内容や設定はこのブラウザタブ内にのみ保持され、保存はされません。また、アーキテクチャの診断はまだ行われていません。",
+    "sections": {
+      "serviceSelection": "サービス選択",
+      "configuration": "設定",
+      "preview": "設定プレビュー"
+    },
+    "configuration": {
+      "none": "現在選択されているサービスに設定項目はありません。"
+    },
+    "preview": {
+      "noSelection": "まだサービスが選択されていません。上のAWSサービスから1つ以上選択してください。",
+      "selectedServicesHeading": "選択したサービス",
+      "configurationHeading": "設定内容"
+    },
+    "fields": {
+      "instanceCount": "インスタンス数",
+      "taskCount": "タスク数",
+      "autoScalingEnabled": "Auto Scaling",
+      "multiAZ": "複数のアベイラビリティゾーン",
+      "placement": "配置",
+      "placementPrivate": "プライベートサブネット",
+      "placementPublic": "パブリックサブネット",
+      "backupsEnabled": "バックアップ",
+      "encryptionEnabled": "暗号化",
+      "publiclyAccessible": "パブリックアクセス",
+      "privateSubnet": "プライベートサブネットへの配置",
+      "versioningEnabled": "バージョニング",
+      "publicAccessBlocked": "パブリックアクセスのブロック",
+      "httpsEnabled": "HTTPS",
+      "restrictedOrigin": "オリジンアクセスの制限",
+      "secretsManagementEnabled": "シークレット管理",
+      "logsEnabled": "ログ",
+      "metricsEnabled": "メトリクス",
+      "alarmsEnabled": "アラーム"
+    },
+    "validation": {
+      "computeRequired": "続けるには、コンピューティングサービスを1つ以上選択してください。",
+      "fixErrors": "続けるには、エラーのある項目を修正してください。",
+      "ready": "診断の準備ができました",
+      "numberInvalid": "有効な数値を入力してください。",
+      "numberTooLow": "{{min}}以上の値を入力してください。",
+      "numberTooHigh": "{{max}}以下の値を入力してください。"
+    },
+    "buttons": {
+      "continue": "診断へ進む"
+    },
+    "afterSubmit": {
+      "readyMessage": "この設定はセッション内に保持されました。診断ロジックは後日実装予定で、まだスコアは算出されていません。"
+    }
   },
   "failureSimulator": {
     "title": "障害シミュレーター",
@@ -165,5 +217,91 @@
     "costEfficiency": "コスト効率",
     "performance": "パフォーマンス",
     "operations": "運用"
+  },
+  "serviceCategories": {
+    "compute": "コンピューティング",
+    "database": "データベース",
+    "storage": "ストレージ",
+    "networkingDelivery": "ネットワーキング／配信",
+    "securityOperations": "セキュリティ／運用",
+    "messaging": "メッセージング"
+  },
+  "awsServices": {
+    "ec2": {
+      "name": "Amazon EC2",
+      "description": "OSやランタイムを自分で管理できる仮想サーバーです。"
+    },
+    "ecsFargate": {
+      "name": "Amazon ECS Fargate",
+      "description": "サーバー管理なしでコンテナを実行でき、基盤インフラはAWSが管理します。"
+    },
+    "lambda": {
+      "name": "AWS Lambda",
+      "description": "サーバーの用意や管理なしで、イベントに応じてコードを実行します。"
+    },
+    "rdsPostgres": {
+      "name": "Amazon RDS（PostgreSQL）",
+      "description": "パッチ適用・バックアップ・フェイルオーバーをAWSが行う、マネージドなリレーショナルデータベースです。"
+    },
+    "dynamoDb": {
+      "name": "Amazon DynamoDB",
+      "description": "どんな規模でも一貫した低レイテンシーを実現する、マネージドなNoSQLデータベースです。"
+    },
+    "s3": {
+      "name": "Amazon S3",
+      "description": "ファイル、バックアップ、静的アセットなどを保存できる、耐久性の高いオブジェクトストレージです。"
+    },
+    "efs": {
+      "name": "Amazon EFS",
+      "description": "複数のコンピュートインスタンスから同時にマウントできる、マネージドなファイルシステムです。"
+    },
+    "vpc": {
+      "name": "Amazon VPC",
+      "description": "アーキテクチャ全体を稼働させる、自分専用の隔離されたネットワークです。"
+    },
+    "alb": {
+      "name": "Application Load Balancer",
+      "description": "可用性を高めるため、受信トラフィックを複数のコンピュートターゲットに分散します。"
+    },
+    "apiGateway": {
+      "name": "Amazon API Gateway",
+      "description": "ルーティング・スロットリング・認可を担う、APIのマネージドな玄関口です。"
+    },
+    "cloudfront": {
+      "name": "Amazon CloudFront",
+      "description": "世界中のユーザーに近い場所でコンテンツをキャッシュするCDNです。"
+    },
+    "route53": {
+      "name": "Amazon Route 53",
+      "description": "アプリケーションのエンドポイントへトラフィックを振り分ける、マネージドDNSサービスです。"
+    },
+    "secretsManager": {
+      "name": "AWS Secrets Manager",
+      "description": "認証情報を保存・ローテーションし、コードや設定ファイルに秘密情報を残しません。"
+    },
+    "kms": {
+      "name": "AWS KMS",
+      "description": "AWS上のデータを保護する暗号化キーを管理します。"
+    },
+    "waf": {
+      "name": "AWS WAF",
+      "description": "悪意のあるトラフィックをアプリケーションに届く前にフィルタリングするWebアプリケーションファイアウォールです。"
+    },
+    "cloudwatch": {
+      "name": "Amazon CloudWatch",
+      "description": "ログ・メトリクス・アラームを収集し、アーキテクチャの挙動を観測します。"
+    },
+    "sns": {
+      "name": "Amazon SNS",
+      "description": "多数の購読者に一度に通知を配信する（ファンアウト型の）メッセージングサービスです。"
+    },
+    "sqs": {
+      "name": "Amazon SQS",
+      "description": "サービス間を疎結合にし、トラフィックの急増を吸収するマネージドキューです。"
+    },
+    "eventBridge": {
+      "name": "Amazon EventBridge",
+      "description": "ルールに基づいて、AWSサービスやアプリケーション間でイベントをルーティングします。"
+    }
   }
 }

@@ -87,7 +87,7 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | Design system & responsive shell | ✅ Done (Day 3) |
 | Bilingual (i18next) | ✅ Done (Day 4) |
 | Dashboard UI (stat cards, charts, sample data) | ✅ Done (Day 5) |
-| Architecture Analyzer | ⏳ Not yet implemented |
+| Architecture Analyzer (service selector + configuration UI) | ✅ Done (Day 6) |
 | Assessment / Recommendation engine | ⏳ Not yet implemented |
 | Failure Simulator | ⏳ Not yet implemented |
 | Backend / API | ⏳ Not yet implemented |

@@ -1,0 +1,66 @@
+.service-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--tap-target);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.service-card:hover {
+  border-color: var(--accent);
+}
+
+/* Selected: accent border (thicker, not just recolored) + filled checkmark +
+   tinted background — three independent, non-color-only signals. */
+.service-card.is-selected {
+  border-width: 2px;
+  border-color: var(--accent);
+  background: var(--surface-active);
+  padding: calc(var(--space-3) - 1px); /* keep card size stable as border grows 1px -> 2px */
+}
+
+.service-card__status {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.125rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  font-weight: var(--weight-bold);
+}
+
+.is-selected .service-card__status {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.service-card__name {
+  font-weight: var(--weight-semibold);
+}
+
+.service-card__description {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}

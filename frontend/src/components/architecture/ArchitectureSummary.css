@@ -1,0 +1,67 @@
+.architecture-summary__subheading {
+  margin: 0 0 var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.architecture-summary__empty {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.architecture-summary__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.architecture-summary__config-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.architecture-summary__config-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-block: var(--space-1);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--text-sm);
+}
+
+.architecture-summary__config-row:last-child {
+  border-bottom: none;
+}
+
+.architecture-summary__config-row dt {
+  color: var(--text-secondary);
+}
+
+.architecture-summary__config-row dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.architecture-summary__status {
+  margin: 0;
+}
+
+.architecture-summary__submitted {
+  border-color: var(--accent);
+}
+
+.architecture-summary__submitted p {
+  margin: 0;
+  color: var(--text-primary);
+}

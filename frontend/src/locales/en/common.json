@@ -6,7 +6,10 @@
   "common": {
     "planned": "Planned",
     "notImplemented": "This feature is planned and not yet implemented.",
-    "sampleData": "Sample Data / サンプルデータ"
+    "sampleData": "Sample Data / サンプルデータ",
+    "yes": "Yes",
+    "no": "No",
+    "selected": "Selected"
   },
   "a11y": {
     "skipToContent": "Skip to main content"
@@ -99,7 +102,56 @@
   },
   "architectureAnalyzer": {
     "title": "Architecture Analyzer",
-    "description": "Configure an AWS-style architecture and get explainable feedback."
+    "description": "Configure an AWS-style architecture and get explainable feedback.",
+    "demoNotice": "This is a demo configuration workspace. Selections and settings stay in this browser tab only — nothing is saved, and no architecture has been assessed yet.",
+    "sections": {
+      "serviceSelection": "Service Selection",
+      "configuration": "Configuration",
+      "preview": "Configuration Preview"
+    },
+    "configuration": {
+      "none": "None of the currently selected services have configuration options."
+    },
+    "preview": {
+      "noSelection": "No services selected yet. Choose at least one AWS service above to begin.",
+      "selectedServicesHeading": "Selected Services",
+      "configurationHeading": "Configuration"
+    },
+    "fields": {
+      "instanceCount": "Instance count",
+      "taskCount": "Task count",
+      "autoScalingEnabled": "Auto Scaling enabled",
+      "multiAZ": "Multiple Availability Zones",
+      "placement": "Placement",
+      "placementPrivate": "Private subnet",
+      "placementPublic": "Public subnet",
+      "backupsEnabled": "Backups enabled",
+      "encryptionEnabled": "Encryption enabled",
+      "publiclyAccessible": "Publicly accessible",
+      "privateSubnet": "Private subnet placement",
+      "versioningEnabled": "Versioning enabled",
+      "publicAccessBlocked": "Public access blocked",
+      "httpsEnabled": "HTTPS enabled",
+      "restrictedOrigin": "Restricted origin access",
+      "secretsManagementEnabled": "Secrets management enabled",
+      "logsEnabled": "Logs enabled",
+      "metricsEnabled": "Metrics enabled",
+      "alarmsEnabled": "Alarms enabled"
+    },
+    "validation": {
+      "computeRequired": "Select at least one compute service to continue.",
+      "fixErrors": "Fix the highlighted fields to continue.",
+      "ready": "Ready for Assessment",
+      "numberInvalid": "Enter a valid number.",
+      "numberTooLow": "Must be at least {{min}}.",
+      "numberTooHigh": "Must be {{max}} or fewer."
+    },
+    "buttons": {
+      "continue": "Continue to Assessment"
+    },
+    "afterSubmit": {
+      "readyMessage": "Configuration saved for this session. Assessment logic is coming in a later day — no score has been calculated yet."
+    }
   },
   "failureSimulator": {
     "title": "Failure Simulator",
@@ -165,5 +217,91 @@
     "costEfficiency": "Cost Efficiency",
     "performance": "Performance",
     "operations": "Operations"
+  },
+  "serviceCategories": {
+    "compute": "Compute",
+    "database": "Database",
+    "storage": "Storage",
+    "networkingDelivery": "Networking / Delivery",
+    "securityOperations": "Security / Operations",
+    "messaging": "Messaging"
+  },
+  "awsServices": {
+    "ec2": {
+      "name": "Amazon EC2",
+      "description": "Virtual servers you manage yourself, for full control over the OS and runtime."
+    },
+    "ecsFargate": {
+      "name": "Amazon ECS Fargate",
+      "description": "Runs containers without managing servers — AWS handles the underlying infrastructure."
+    },
+    "lambda": {
+      "name": "AWS Lambda",
+      "description": "Runs code in response to events, with no servers to provision or manage."
+    },
+    "rdsPostgres": {
+      "name": "Amazon RDS (PostgreSQL)",
+      "description": "A managed relational database, with AWS handling patching, backups and failover."
+    },
+    "dynamoDb": {
+      "name": "Amazon DynamoDB",
+      "description": "A managed NoSQL database built for consistent, low-latency access at any scale."
+    },
+    "s3": {
+      "name": "Amazon S3",
+      "description": "Durable object storage for files, backups, static assets and data of any size."
+    },
+    "efs": {
+      "name": "Amazon EFS",
+      "description": "A managed file system that multiple compute instances can mount at once."
+    },
+    "vpc": {
+      "name": "Amazon VPC",
+      "description": "An isolated network you control, where the rest of your architecture runs."
+    },
+    "alb": {
+      "name": "Application Load Balancer",
+      "description": "Distributes incoming traffic across multiple compute targets for availability."
+    },
+    "apiGateway": {
+      "name": "Amazon API Gateway",
+      "description": "A managed front door for APIs, handling routing, throttling and authorization."
+    },
+    "cloudfront": {
+      "name": "Amazon CloudFront",
+      "description": "A content delivery network that caches content closer to users worldwide."
+    },
+    "route53": {
+      "name": "Amazon Route 53",
+      "description": "A managed DNS service for routing traffic to your application's endpoints."
+    },
+    "secretsManager": {
+      "name": "AWS Secrets Manager",
+      "description": "Stores and rotates credentials so secrets never sit in code or config files."
+    },
+    "kms": {
+      "name": "AWS KMS",
+      "description": "Manages encryption keys used to protect data across your AWS services."
+    },
+    "waf": {
+      "name": "AWS WAF",
+      "description": "A web application firewall that filters malicious traffic before it reaches your app."
+    },
+    "cloudwatch": {
+      "name": "Amazon CloudWatch",
+      "description": "Collects logs, metrics and alarms for observing how your architecture behaves."
+    },
+    "sns": {
+      "name": "Amazon SNS",
+      "description": "Publishes notifications to many subscribers at once (fan-out messaging)."
+    },
+    "sqs": {
+      "name": "Amazon SQS",
+      "description": "A managed queue that decouples services and smooths out traffic spikes."
+    },
+    "eventBridge": {
+      "name": "Amazon EventBridge",
+      "description": "Routes events between AWS services and applications based on rules."
+    }
   }
 }
