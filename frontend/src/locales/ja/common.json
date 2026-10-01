@@ -155,7 +155,62 @@
   },
   "failureSimulator": {
     "title": "障害シミュレーター",
-    "description": "インフラ障害をシミュレートし、影響を受ける範囲を確認できます。"
+    "description": "一般的なインフラ障害をシミュレートし、アーキテクチャへの影響を確認します。",
+    "demoNotice": "Day 10では、障害時の挙動を決定論的に確認するため、固定のデモ構成を使用しています。",
+    "scenarioLabel": "障害シナリオ",
+    "run": "シミュレーション実行",
+    "resultTitle": "シミュレーション結果",
+    "affectedServices": "影響を受けるサービス",
+    "noneAffected": "このデモ構成では直接影響を受けるサービスはありません。",
+    "impact": "想定される影響",
+    "resilience": "耐障害性メモ",
+    "severity": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "critical": "重大"
+    },
+    "scenarios": {
+      "ec2InstanceFailure": "EC2インスタンス障害",
+      "ecsTaskFailure": "ECSタスク障害",
+      "rdsFailure": "RDSデータベース障害",
+      "azOutage": "アベイラビリティゾーン障害"
+    },
+    "results": {
+      "ec2InstanceFailure": {
+        "impactDefault": "EC2はデモ構成に含まれていません。",
+        "resilienceDefault": "EC2の耐障害性評価は不要です。",
+        "impactHigh": "単一のEC2インスタンス障害により、アプリケーションが停止する可能性があります。",
+        "resilienceHigh": "複数インスタンスとAuto Scalingを利用し、単一インスタンスへの依存を減らします。",
+        "impactMedium": "一部のEC2キャパシティが失われても、他のインスタンスで処理を継続できます。",
+        "resilienceMedium": "複数インスタンスやスケーリングにより、1台の障害による影響を軽減できます。"
+      },
+      "ecsTaskFailure": {
+        "impactDefault": "ECS Fargateはデモ構成に含まれていません。",
+        "resilienceDefault": "ECSの耐障害性評価は不要です。",
+        "impactHigh": "単一のECSタスク障害により、ワークロードが一時的に停止する可能性があります。",
+        "resilienceHigh": "複数タスクを実行し、サービスの自動復旧やスケーリングを利用します。",
+        "impactMedium": "1つのECSタスクが停止しても、他のタスクで処理を継続できます。",
+        "resilienceMedium": "複数タスクにより、単一タスクへの依存を減らせます。"
+      },
+      "rdsFailure": {
+        "impactDefault": "RDSはデモ構成に含まれていません。",
+        "resilienceDefault": "RDSの耐障害性評価は不要です。",
+        "impactHigh": "データベース障害により、復旧まで読み書きが停止する可能性があります。",
+        "resilienceHigh": "Multi-AZとバックアップを有効にし、データベースの耐障害性を高めます。",
+        "resilienceBackupsOnly": "バックアップは復旧には役立ちますが、即時フェイルオーバーは提供しません。",
+        "impactMedium": "Multi-AZではフェイルオーバーできますが、短時間の中断が発生する可能性があります。",
+        "resilienceMedium": "Multi-AZによりスタンバイDBを用意し、可用性を高めます。"
+      },
+      "azOutage": {
+        "impactDefault": "対象となるコンピュートまたはDBサービスがありません。",
+        "resilienceDefault": "AZ耐障害性評価は不要です。",
+        "impactCritical": "1つのAZ障害で、主要なアプリケーションコンポーネントが停止する可能性があります。",
+        "resilienceCritical": "重要なコンピュートとDBを複数のAZに分散します。",
+        "impactMedium": "Multi-AZ構成では、容量を切り替えながらサービスを継続できます。",
+        "resilienceMedium": "Multi-AZにより、単一AZへの依存を軽減できます。"
+      }
+    }
   },
   "serviceCompare": {
     "title": "AWSサービス比較",

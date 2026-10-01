@@ -155,7 +155,62 @@
   },
   "failureSimulator": {
     "title": "Failure Simulator",
-    "description": "Simulate infrastructure failures and see which parts of the system are affected."
+    "description": "Simulate common infrastructure failures and inspect the likely architectural impact.",
+    "demoNotice": "This Day 10 simulator currently uses a fixed demo architecture so failure behavior can be tested deterministically.",
+    "scenarioLabel": "Failure scenario",
+    "run": "Run Simulation",
+    "resultTitle": "Simulation Result",
+    "affectedServices": "Affected services",
+    "noneAffected": "No selected service is directly affected in this demo.",
+    "impact": "Likely impact",
+    "resilience": "Resilience note",
+    "severity": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical"
+    },
+    "scenarios": {
+      "ec2InstanceFailure": "EC2 instance failure",
+      "ecsTaskFailure": "ECS task failure",
+      "rdsFailure": "RDS database failure",
+      "azOutage": "Availability Zone outage"
+    },
+    "results": {
+      "ec2InstanceFailure": {
+        "impactDefault": "EC2 is not part of the demo architecture.",
+        "resilienceDefault": "No EC2 resilience evaluation was required.",
+        "impactHigh": "A single EC2 instance failure could interrupt application availability.",
+        "resilienceHigh": "Add redundant instances and Auto Scaling to reduce single-instance dependency.",
+        "impactMedium": "Some EC2 capacity may be lost, but additional capacity can continue serving traffic.",
+        "resilienceMedium": "Multiple instances or scaling reduce the effect of one instance failing."
+      },
+      "ecsTaskFailure": {
+        "impactDefault": "ECS Fargate is not part of the demo architecture.",
+        "resilienceDefault": "No ECS resilience evaluation was required.",
+        "impactHigh": "A single ECS task failure could temporarily remove the application workload.",
+        "resilienceHigh": "Run multiple tasks and use service-level recovery or scaling.",
+        "impactMedium": "One ECS task can fail while other tasks continue serving traffic.",
+        "resilienceMedium": "Multiple tasks reduce dependence on a single running task."
+      },
+      "rdsFailure": {
+        "impactDefault": "RDS is not part of the demo architecture.",
+        "resilienceDefault": "No RDS resilience evaluation was required.",
+        "impactHigh": "A database failure could stop application reads and writes until recovery.",
+        "resilienceHigh": "Enable Multi-AZ and maintain backups for stronger database resilience.",
+        "resilienceBackupsOnly": "Backups support recovery, but they do not provide immediate failover.",
+        "impactMedium": "A Multi-AZ database can fail over, although a brief interruption may occur.",
+        "resilienceMedium": "Multi-AZ improves availability by providing a standby database."
+      },
+      "azOutage": {
+        "impactDefault": "No compute or database services are selected.",
+        "resilienceDefault": "No Availability Zone resilience evaluation was required.",
+        "impactCritical": "An Availability Zone outage could interrupt one or more core application components.",
+        "resilienceCritical": "Spread critical compute and database workloads across multiple Availability Zones.",
+        "impactMedium": "Multi-AZ workloads can continue operating with reduced or shifted capacity.",
+        "resilienceMedium": "Multi-AZ placement reduces dependency on a single Availability Zone."
+      }
+    }
   },
   "serviceCompare": {
     "title": "AWS Service Compare",

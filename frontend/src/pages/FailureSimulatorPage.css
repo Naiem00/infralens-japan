@@ -1,0 +1,27 @@
+.failure-result__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.failure-result__header h2 {
+  margin: 0;
+}
+
+.failure-result__services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#failure-scenario {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
