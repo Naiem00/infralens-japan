@@ -69,7 +69,8 @@ Every rule has this shape (`frontend/src/assessment/assessmentRules.js`):
 
 `descriptionKey` always points to a **factual, neutral statement** ("Database
 publicly accessible"), never prescriptive advice ("You should..."). Advice
-belongs to the Day 8 recommendation engine, not Day 7 scoring.
+belongs to the Day 8 recommendation engine (`frontend/src/recommendations/`,
+documented in `docs/recommendations.md`), not Day 7 scoring.
 
 Impact values are kept simple and explainable: `+5`, `+10`, `-5`, `-10`,
 `-15`. No fractional values like `+3.7`.

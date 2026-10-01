@@ -37,7 +37,7 @@ Every significant technical decision in this project is intended to be explainab
 - 📊 **Dashboard** — architecture/assessment activity, score history *(planned)*
 - 🏗️ **Architecture Analyzer** — configure AWS services (compute, database, storage, networking, delivery, security, monitoring, messaging) *(planned)*
 - ✅ **Architecture Assessment** — deterministic, rules-based scoring (Reliability, Security, Cost Efficiency, Performance, Operations) *(planned)*
-- 💡 **Recommendation Engine** — Critical / High Priority / Recommended / Consider, each with explanation and AWS concept *(planned)*
+- 💡 **Recommendation Engine** — Critical / High Priority / Recommended / Consider, each with explanation and AWS concept *(implemented, Day 8)*
 - 🗺️ **Architecture Visualization** — generated diagrams of traffic flow, AZs, public/private boundaries *(planned)*
 - 💥 **Failure Simulator** — simulate EC2/ECS/RDS/AZ failures and see cascading impact *(planned)*
 - ⚖️ **AWS Service Compare** — real architectural trade-offs (EC2 vs ECS vs Lambda, RDS vs DynamoDB, etc.) *(planned)*
@@ -89,7 +89,7 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | Dashboard UI (stat cards, charts, sample data) | ✅ Done (Day 5) |
 | Architecture Analyzer (service selector + configuration UI) | ✅ Done (Day 6) |
 | Assessment rules engine (deterministic scoring) | ✅ Done (Day 7) |
-| Recommendation engine | ⏳ Not yet implemented |
+| Recommendation engine | ✅ Done (Day 8) |
 | Failure Simulator | ⏳ Not yet implemented |
 | Backend / API | ⏳ Not yet implemented |
 | Authentication | ⏳ Not yet implemented |
