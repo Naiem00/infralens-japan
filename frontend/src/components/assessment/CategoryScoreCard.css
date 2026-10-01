@@ -1,0 +1,27 @@
+.category-score-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.category-score-card__name {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.category-score-card__score {
+  flex: none;
+}
+
+.category-score-card__number {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.category-score-card__max {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}

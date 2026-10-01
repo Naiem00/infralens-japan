@@ -1,20 +1,24 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArchitectureSummary, ConfigPanel, ServiceSelector } from '../components/architecture/index.js';
+import { AssessmentResult } from '../components/assessment/index.js';
 import { Badge, Card, SectionHeader } from '../components/ui/index.js';
 import { buildDefaultConfig, getServiceById } from '../data/awsServices.js';
 import { validateArchitecture } from '../utils/architectureValidation.js';
+import { calculateAssessment } from '../assessment/index.js';
 import './ArchitectureAnalyzerPage.css';
 
-// Day 6: selection + configuration UI only. No scoring, no recommendations —
-// see validateArchitecture (utils/architectureValidation.js) for the very small
-// amount of "is this a usable Day 6 form" validation, which is NOT the Day 7
-// assessment rules engine.
+// Day 6 built selection + configuration. Day 7 adds: clicking Continue on a
+// VALID configuration runs the pure, deterministic scoring engine
+// (src/assessment/) and renders its result below. validateArchitecture
+// (utils/architectureValidation.js) is still only the Day 6 form-validity
+// check (at least one compute service, no invalid numbers) — it is NOT the
+// scoring engine and never influences the score.
 function ArchitectureAnalyzerPage() {
   const { t } = useTranslation();
   const [selectedServices, setSelectedServices] = useState([]);
   const [architectureConfig, setArchitectureConfig] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [assessment, setAssessment] = useState(null);
 
   const handleToggleService = (serviceId) => {
     const wasSelected = selectedServices.includes(serviceId);
@@ -30,7 +34,10 @@ function ArchitectureAnalyzerPage() {
       setArchitectureConfig((prev) => ({ ...prev, [serviceId]: buildDefaultConfig(service) }));
     }
 
-    setSubmitted(false);
+    // Any change to the selection invalidates a previously computed result —
+    // the on-screen assessment must always reflect the CURRENT configuration,
+    // never a stale snapshot from before the person kept editing.
+    setAssessment(null);
   };
 
   const handleFieldChange = (serviceId, fieldKey, rawValue) => {
@@ -38,7 +45,7 @@ function ArchitectureAnalyzerPage() {
       ...prev,
       [serviceId]: { ...prev[serviceId], [fieldKey]: rawValue },
     }));
-    setSubmitted(false);
+    setAssessment(null);
   };
 
   const validation = useMemo(
@@ -47,7 +54,11 @@ function ArchitectureAnalyzerPage() {
   );
 
   const handleContinue = () => {
-    if (validation.isValid) setSubmitted(true);
+    if (!validation.isValid) return;
+    // calculateAssessment is pure and synchronous: no network call, no loading
+    // state needed. A fresh object is returned even for identical input, which
+    // is what re-triggers AssessmentResult's focus-management effect on re-click.
+    setAssessment(calculateAssessment({ selectedServices, architectureConfig }));
   };
 
   return (
@@ -80,10 +91,12 @@ function ArchitectureAnalyzerPage() {
           selectedServices={selectedServices}
           architectureConfig={architectureConfig}
           validation={validation}
-          submitted={submitted}
+          submitted={assessment !== null}
           onContinue={handleContinue}
         />
       </div>
+
+      {assessment && <AssessmentResult assessment={assessment} />}
     </div>
   );
 }

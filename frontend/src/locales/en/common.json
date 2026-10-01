@@ -150,7 +150,7 @@
       "continue": "Continue to Assessment"
     },
     "afterSubmit": {
-      "readyMessage": "Configuration saved for this session. Assessment logic is coming in a later day — no score has been calculated yet."
+      "completeMessage": "Assessment complete — see the results below."
     }
   },
   "failureSimulator": {
@@ -302,6 +302,65 @@
     "eventBridge": {
       "name": "Amazon EventBridge",
       "description": "Routes events between AWS services and applications based on rules."
+    }
+  },
+  "assessment": {
+    "title": "Assessment Result",
+    "overallScore": "Overall Score",
+    "disclaimer": "This is an educational portfolio assessment model, not an official AWS Well-Architected Framework review. Each category starts at a baseline of 70 points; specific configuration choices below add or subtract points from there.",
+    "noRulesApplied": "No specific factors detected for this category — base score applied.",
+    "ratings": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "needsImprovement": "Needs Improvement",
+      "highRisk": "High Risk"
+    },
+    "rules": {
+      "reliability": {
+        "ec2MultiAz": "EC2 Multi-AZ enabled",
+        "ecsMultiAz": "ECS Fargate Multi-AZ enabled",
+        "ec2MultipleInstances": "More than one EC2 instance",
+        "ecsMultipleTasks": "More than one ECS task",
+        "rdsMultiAz": "RDS Multi-AZ enabled",
+        "rdsBackups": "RDS backups enabled",
+        "s3Versioning": "S3 versioning enabled",
+        "singleComputeNoScaling": "Single compute instance/task with no Auto Scaling"
+      },
+      "security": {
+        "rdsPublic": "Database publicly accessible",
+        "rdsPrivateSubnet": "RDS private subnet placement",
+        "rdsEncryption": "RDS encryption enabled",
+        "s3Encryption": "S3 encryption enabled",
+        "s3PublicBlocked": "S3 public access blocked",
+        "cloudfrontHttps": "CloudFront HTTPS enabled",
+        "albHttps": "ALB HTTPS enabled",
+        "secretsManagerEnabled": "Secrets Manager enabled",
+        "wafSelected": "WAF selected",
+        "kmsSelected": "KMS selected"
+      },
+      "costEfficiency": {
+        "ec2AutoScaling": "EC2 Auto Scaling enabled",
+        "ecsAutoScaling": "ECS Fargate Auto Scaling enabled",
+        "lambdaSelected": "Lambda selected (pay-per-use)",
+        "duplicateCompute": "EC2 and ECS Fargate both selected (possible duplicate compute)",
+        "tooManyFixedInstances": "More than 5 fixed EC2 instances with no Auto Scaling"
+      },
+      "performance": {
+        "cloudfrontSelected": "CloudFront selected",
+        "albMultipleTargets": "ALB distributing traffic across multiple compute targets",
+        "ec2AutoScaling": "EC2 Auto Scaling enabled",
+        "ecsAutoScaling": "ECS Fargate Auto Scaling enabled",
+        "apiGatewayLambda": "API Gateway + Lambda combination",
+        "singleFixedCompute": "Single fixed compute resource with no scaling"
+      },
+      "operations": {
+        "cloudwatchLogs": "CloudWatch logs enabled",
+        "cloudwatchAlarms": "CloudWatch alarms enabled",
+        "cloudwatchMetrics": "CloudWatch metrics enabled",
+        "secretsManagerSelected": "Secrets Manager selected",
+        "rdsBackups": "RDS backups enabled",
+        "monitoringAbsent": "No monitoring service selected (CloudWatch)"
+      }
     }
   }
 }

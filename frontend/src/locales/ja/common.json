@@ -150,7 +150,7 @@
       "continue": "診断へ進む"
     },
     "afterSubmit": {
-      "readyMessage": "この設定はセッション内に保持されました。診断ロジックは後日実装予定で、まだスコアは算出されていません。"
+      "completeMessage": "診断が完了しました。結果は以下をご確認ください。"
     }
   },
   "failureSimulator": {
@@ -302,6 +302,65 @@
     "eventBridge": {
       "name": "Amazon EventBridge",
       "description": "ルールに基づいて、AWSサービスやアプリケーション間でイベントをルーティングします。"
+    }
+  },
+  "assessment": {
+    "title": "診断結果",
+    "overallScore": "総合スコア",
+    "disclaimer": "これは教育目的のポートフォリオ向け診断モデルであり、AWS Well-Architected Frameworkの公式レビューではありません。各カテゴリは基準点70点から始まり、以下の設定内容に応じて加点・減点されます。",
+    "noRulesApplied": "このカテゴリで該当する項目はありませんでした（基準スコアを適用）。",
+    "ratings": {
+      "excellent": "優秀",
+      "good": "良好",
+      "needsImprovement": "改善が必要",
+      "highRisk": "要注意"
+    },
+    "rules": {
+      "reliability": {
+        "ec2MultiAz": "EC2でMulti-AZが有効",
+        "ecsMultiAz": "ECS FargateでMulti-AZが有効",
+        "ec2MultipleInstances": "EC2インスタンスが複数",
+        "ecsMultipleTasks": "ECSタスクが複数",
+        "rdsMultiAz": "RDSでMulti-AZが有効",
+        "rdsBackups": "RDSのバックアップが有効",
+        "s3Versioning": "S3のバージョニングが有効",
+        "singleComputeNoScaling": "Auto Scalingなしの単一コンピュートインスタンス／タスク"
+      },
+      "security": {
+        "rdsPublic": "データベースが外部に公開されている",
+        "rdsPrivateSubnet": "RDSがプライベートサブネットに配置",
+        "rdsEncryption": "RDSの暗号化が有効",
+        "s3Encryption": "S3の暗号化が有効",
+        "s3PublicBlocked": "S3のパブリックアクセスをブロック",
+        "cloudfrontHttps": "CloudFrontでHTTPSが有効",
+        "albHttps": "ALBでHTTPSが有効",
+        "secretsManagerEnabled": "Secrets Managerが有効",
+        "wafSelected": "WAFを選択",
+        "kmsSelected": "KMSを選択"
+      },
+      "costEfficiency": {
+        "ec2AutoScaling": "EC2でAuto Scalingが有効",
+        "ecsAutoScaling": "ECS FargateでAuto Scalingが有効",
+        "lambdaSelected": "Lambdaを選択（従量課金）",
+        "duplicateCompute": "EC2とECS Fargateの両方を選択（コンピュートの重複の可能性）",
+        "tooManyFixedInstances": "Auto Scalingなしで5台を超える固定EC2インスタンス"
+      },
+      "performance": {
+        "cloudfrontSelected": "CloudFrontを選択",
+        "albMultipleTargets": "ALBが複数のコンピュートターゲットにトラフィックを分散",
+        "ec2AutoScaling": "EC2でAuto Scalingが有効",
+        "ecsAutoScaling": "ECS FargateでAuto Scalingが有効",
+        "apiGatewayLambda": "API GatewayとLambdaの組み合わせ",
+        "singleFixedCompute": "スケーリングなしの単一の固定コンピュートリソース"
+      },
+      "operations": {
+        "cloudwatchLogs": "CloudWatchのログが有効",
+        "cloudwatchAlarms": "CloudWatchのアラームが有効",
+        "cloudwatchMetrics": "CloudWatchのメトリクスが有効",
+        "secretsManagerSelected": "Secrets Managerを選択",
+        "rdsBackups": "RDSのバックアップが有効",
+        "monitoringAbsent": "モニタリングサービス（CloudWatch）が未選択"
+      }
     }
   }
 }

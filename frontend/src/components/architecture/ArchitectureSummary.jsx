@@ -87,7 +87,7 @@ function ArchitectureSummary({ selectedServices, architectureConfig, validation,
 
       {submitted && (
         <Card padding="sm" className="architecture-summary__submitted">
-          <p>{t('architectureAnalyzer.afterSubmit.readyMessage')}</p>
+          <p>{t('architectureAnalyzer.afterSubmit.completeMessage')}</p>
         </Card>
       )}
     </Card>
