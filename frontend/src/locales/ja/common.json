@@ -214,11 +214,112 @@
   },
   "serviceCompare": {
     "title": "AWSサービス比較",
-    "description": "AWSサービスを、設計上の実際のトレードオフから比較できます。"
+    "description": "AWSサービスをアーキテクチャ上のトレードオフと代表的な用途から比較します。",
+    "notice": "この比較はポートフォリオ用の学習ガイドであり、AWSの完全な選定ガイドではありません。",
+    "groupLabel": "比較カテゴリ",
+    "attribute": "比較項目",
+    "groups": {
+      "compute": "コンピューティング：EC2 / ECS Fargate / Lambda",
+      "database": "データベース：RDS / DynamoDB",
+      "delivery": "配信：ALB / API Gateway / CloudFront"
+    },
+    "attributes": {
+      "management": "インフラ管理",
+      "scaling": "スケーリング",
+      "control": "制御レベル",
+      "billingModel": "代表的な課金単位",
+      "bestFor": "適した用途",
+      "databaseType": "データベースモデル",
+      "queryModel": "クエリ / アクセス方式",
+      "primaryRole": "主な役割",
+      "layer": "トラフィック層",
+      "keyTradeoff": "主なトレードオフ"
+    },
+    "values": {
+      "compute": {
+        "ec2": {
+          "management": "OSとインスタンス設定を利用者が管理します。",
+          "scaling": "手動またはAuto Scalingを利用します。",
+          "control": "最も高いインフラ制御が可能です。",
+          "billingModel": "稼働するコンピュート容量。",
+          "bestFor": "OSレベルの制御や従来型サーバーが必要なワークロード。"
+        },
+        "ecsFargate": {
+          "management": "基盤サーバーはAWSが管理します。",
+          "scaling": "コンテナタスクやサービスをスケールします。",
+          "control": "サーバー管理なしでコンテナを制御できます。",
+          "billingModel": "要求したコンテナCPU・メモリ容量。",
+          "bestFor": "EC2ホストを管理せずにコンテナを実行したい場合。"
+        },
+        "lambda": {
+          "management": "サーバー管理は不要です。",
+          "scaling": "呼び出しに応じて自動的にスケールします。",
+          "control": "インフラ制御は最も少なくなります。",
+          "billingModel": "リクエスト数と実行時間。",
+          "bestFor": "イベント駆動や短時間実行のサーバーレス処理。"
+        }
+      },
+      "database": {
+        "rdsPostgres": {
+          "databaseType": "マネージドなリレーショナルデータベース。",
+          "management": "インフラやパッチ、バックアップ機能をAWSが管理します。",
+          "scaling": "インスタンスやストレージを拡張し、Multi-AZで可用性を高めます。",
+          "queryModel": "SQLとリレーショナルクエリ。",
+          "bestFor": "リレーショナルデータ、トランザクション、SQLワークロード。"
+        },
+        "dynamoDb": {
+          "databaseType": "マネージドNoSQLキーバリュー / ドキュメントDB。",
+          "management": "サーバーレスなマネージドDBです。",
+          "scaling": "大規模な自動運用を想定した設計です。",
+          "queryModel": "主キーとインデックス中心のアクセスパターン。",
+          "bestFor": "大規模で低レイテンシーなNoSQLアクセス。"
+        }
+      },
+      "delivery": {
+        "alb": {
+          "primaryRole": "複数ターゲットへアプリケーショントラフィックを分散します。",
+          "layer": "アプリケーションロードバランシング。",
+          "scaling": "受信トラフィックに対してマネージドにスケールします。",
+          "bestFor": "複数バックエンドを持つHTTP/HTTPSアプリ。",
+          "keyTradeoff": "バックエンド分散用であり、グローバルCDNキャッシュではありません。"
+        },
+        "apiGateway": {
+          "primaryRole": "APIのマネージドなフロントドア。",
+          "layer": "APIリクエストのルーティングと管理。",
+          "scaling": "API向けにマネージドでスケールします。",
+          "bestFor": "REST/HTTP APIやサーバーレスバックエンド。",
+          "keyTradeoff": "API機能は豊富ですが、汎用ロードバランサーではありません。"
+        },
+        "cloudfront": {
+          "primaryRole": "グローバルなコンテンツ配信とキャッシュ。",
+          "layer": "エッジ配信 / CDN。",
+          "scaling": "グローバルなマネージドエッジネットワーク。",
+          "bestFor": "ユーザーに近い場所から静的・動的コンテンツを配信する場合。",
+          "keyTradeoff": "配信レイテンシーを改善しますが、アプリケーションバックエンドの代替ではありません。"
+        }
+      }
+    },
+    "summary": {
+      "compute": "必要なインフラ制御と、サーバー・コンテナ・イベント駆動のどの実行モデルかで選択します。",
+      "database": "主にデータモデルとアクセスパターン、つまりSQLリレーショナルかNoSQLキー/インデックスアクセスかで選択します。",
+      "delivery": "これらは異なる配信レイヤーの課題を解決するため、競合ではなく組み合わせて使う場合も多くあります。"
+    }
   },
   "costCalculator": {
     "title": "コスト見積もり",
-    "description": "月額コストの簡易見積もりを円で表示します（サンプル見積もりのみ）。"
+    "description": "架空のサンプル単価を使用して、月額コストを円で簡易見積もりします。",
+    "sampleEstimate": "サンプル見積もり / Sample Estimate",
+    "notice": "表示される金額は学習用の架空の単価であり、現在のAWS料金ではありません。",
+    "inputsTitle": "サンプルワークロード",
+    "breakdownTitle": "月額見積もり内訳",
+    "total": "推定合計",
+    "fields": {
+      "ec2Instances": "EC2インスタンス数",
+      "rdsInstances": "RDSインスタンス数",
+      "s3StorageGb": "S3ストレージ（GB）",
+      "cloudfrontTransferGb": "CloudFront転送量（GB）"
+    },
+    "footerNotice": "実際のコスト判断を行う前に、AWS Pricing Calculatorで正式な料金を必ず確認してください。"
   },
   "productionReadiness": {
     "title": "本番運用準備チェックリスト",

@@ -1,0 +1,47 @@
+.cost-calculator__layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.cost-calculator__layout h2 {
+  margin: 0;
+}
+
+.cost-calculator__layout label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.cost-calculator__layout input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.cost-calculator__row,
+.cost-calculator__total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+}
+
+.cost-calculator__row {
+  border-bottom: 1px solid var(--border);
+}
+
+.cost-calculator__total {
+  margin-top: 0.5rem;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 768px) {
+  .cost-calculator__layout {
+    grid-template-columns: 1fr;
+  }
+}

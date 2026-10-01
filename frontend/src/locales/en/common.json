@@ -214,11 +214,112 @@
   },
   "serviceCompare": {
     "title": "AWS Service Compare",
-    "description": "Compare AWS services by real architectural trade-offs."
+    "description": "Compare AWS services by architectural trade-offs and common use cases.",
+    "notice": "This comparison is educational guidance for the portfolio demo, not an exhaustive AWS decision guide.",
+    "groupLabel": "Comparison category",
+    "attribute": "Attribute",
+    "groups": {
+      "compute": "Compute: EC2 vs ECS Fargate vs Lambda",
+      "database": "Database: RDS vs DynamoDB",
+      "delivery": "Delivery: ALB vs API Gateway vs CloudFront"
+    },
+    "attributes": {
+      "management": "Infrastructure management",
+      "scaling": "Scaling",
+      "control": "Level of control",
+      "billingModel": "Typical billing model",
+      "bestFor": "Best suited for",
+      "databaseType": "Database model",
+      "queryModel": "Query / access model",
+      "primaryRole": "Primary role",
+      "layer": "Traffic layer",
+      "keyTradeoff": "Key trade-off"
+    },
+    "values": {
+      "compute": {
+        "ec2": {
+          "management": "You manage the operating system and instance configuration.",
+          "scaling": "Manual or Auto Scaling.",
+          "control": "Highest infrastructure control.",
+          "billingModel": "Running compute capacity.",
+          "bestFor": "Workloads that need OS-level control or traditional servers."
+        },
+        "ecsFargate": {
+          "management": "AWS manages the underlying servers.",
+          "scaling": "Scale container tasks and services.",
+          "control": "Container-level control without server management.",
+          "billingModel": "Requested container CPU and memory capacity.",
+          "bestFor": "Containerized applications without EC2 host management."
+        },
+        "lambda": {
+          "management": "No server management.",
+          "scaling": "Automatically scales with invocations.",
+          "control": "Least infrastructure control.",
+          "billingModel": "Requests and execution duration.",
+          "bestFor": "Event-driven and short-running serverless workloads."
+        }
+      },
+      "database": {
+        "rdsPostgres": {
+          "databaseType": "Managed relational database.",
+          "management": "AWS manages infrastructure, patching and backups features.",
+          "scaling": "Scale instance/storage; Multi-AZ improves availability.",
+          "queryModel": "SQL and relational queries.",
+          "bestFor": "Relational data, transactions and SQL workloads."
+        },
+        "dynamoDb": {
+          "databaseType": "Managed NoSQL key-value/document database.",
+          "management": "Serverless managed database.",
+          "scaling": "Designed for automatic large-scale operation.",
+          "queryModel": "Primary-key and index-based access patterns.",
+          "bestFor": "Predictable low-latency NoSQL access at scale."
+        }
+      },
+      "delivery": {
+        "alb": {
+          "primaryRole": "Distribute application traffic across targets.",
+          "layer": "Application load balancing.",
+          "scaling": "Managed scaling for incoming traffic.",
+          "bestFor": "HTTP/HTTPS applications with multiple backend targets.",
+          "keyTradeoff": "Balances backends but is not a global content cache."
+        },
+        "apiGateway": {
+          "primaryRole": "Managed API front door.",
+          "layer": "API request routing and management.",
+          "scaling": "Managed scaling for APIs.",
+          "bestFor": "REST/HTTP APIs, especially managed or serverless backends.",
+          "keyTradeoff": "Rich API features, but it is not a general-purpose load balancer."
+        },
+        "cloudfront": {
+          "primaryRole": "Global content delivery and caching.",
+          "layer": "Edge delivery / CDN.",
+          "scaling": "Global managed edge network.",
+          "bestFor": "Static/dynamic content delivery closer to users.",
+          "keyTradeoff": "Improves delivery latency but does not replace an application backend."
+        }
+      }
+    },
+    "summary": {
+      "compute": "Choose based on how much infrastructure control you need and whether the workload is server-based, containerized, or event-driven.",
+      "database": "Choose based primarily on data model and access pattern: relational SQL versus scalable NoSQL key/index access.",
+      "delivery": "These services solve different layers of traffic delivery and are often used together rather than as direct replacements."
+    }
   },
   "costCalculator": {
     "title": "Cost Calculator",
-    "description": "Simplified monthly cost estimates in JPY (sample estimates only)."
+    "description": "Create a simplified monthly JPY estimate using fictional sample rates.",
+    "sampleEstimate": "Sample Estimate / サンプル見積もり",
+    "notice": "These figures are fictional educational rates and are not current AWS pricing.",
+    "inputsTitle": "Sample workload",
+    "breakdownTitle": "Estimated monthly breakdown",
+    "total": "Estimated total",
+    "fields": {
+      "ec2Instances": "EC2 instances",
+      "rdsInstances": "RDS instances",
+      "s3StorageGb": "S3 storage (GB)",
+      "cloudfrontTransferGb": "CloudFront transfer (GB)"
+    },
+    "footerNotice": "Always verify real architecture pricing with the official AWS Pricing Calculator before making cost decisions."
   },
   "productionReadiness": {
     "title": "Production Readiness Checklist",

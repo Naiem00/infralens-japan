@@ -1,0 +1,44 @@
+.service-compare__table-wrapper {
+  overflow-x: auto;
+}
+
+.service-compare__table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.service-compare__table th,
+.service-compare__table td {
+  padding: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.service-compare__table thead th {
+  color: var(--text-primary);
+}
+
+.service-compare__table tbody th {
+  min-width: 10rem;
+  color: var(--text-secondary);
+}
+
+.service-compare__table td {
+  min-width: 13rem;
+  color: var(--text-secondary);
+}
+
+#comparison-group {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
