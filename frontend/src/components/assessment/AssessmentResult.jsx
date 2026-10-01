@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Badge, Card } from '../ui/index.js';
 import ScoreGauge from './ScoreGauge.jsx';
 import CategoryScoreCard from './CategoryScoreCard.jsx';
+import RecommendationList from './RecommendationList.jsx';
 import { CATEGORY_IDS } from '../../assessment/index.js';
 import './AssessmentResult.css';
 
@@ -12,7 +13,7 @@ import './AssessmentResult.css';
 // results heading, so keyboard and screen-reader users are taken straight to
 // the new result instead of having to go find it (Day 7 a11y requirement:
 // focus management after a dynamic update).
-function AssessmentResult({ assessment }) {
+function AssessmentResult({ assessment, recommendations = [] }) {
   const { t } = useTranslation();
   const headingRef = useRef(null);
 
@@ -62,6 +63,14 @@ function AssessmentResult({ assessment }) {
           />
         ))}
       </div>
+
+      <section className="stack stack--sm" aria-labelledby="recommendations-heading">
+        <h3 id="recommendations-heading" className="assessment-result__overall-heading">
+          {t('recommendations.title')}
+        </h3>
+        <p className="assessment-result__disclaimer">{t('recommendations.disclaimer')}</p>
+        <RecommendationList recommendations={recommendations} />
+      </section>
     </section>
   );
 }

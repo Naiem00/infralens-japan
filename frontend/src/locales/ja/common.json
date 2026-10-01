@@ -362,5 +362,139 @@
         "monitoringAbsent": "モニタリングサービス（CloudWatch）が未選択"
       }
     }
+  },
+  "recommendations": {
+    "title": "改善提案",
+    "disclaimer": "これらの提案は、このデモ構成に対する教育目的のルールベースの助言です。AWS Well-Architected の公式レビューではなく、完全なセキュリティ監査でもありません。",
+    "empty": "この構成では、追加の改善提案はありません（該当するギャップは検出されませんでした）。",
+    "conceptLabel": "AWSの概念",
+    "priorities": {
+      "critical": "Critical（重大）",
+      "high": "High Priority（高優先）",
+      "recommended": "Recommended（推奨）",
+      "consider": "Consider（検討）"
+    },
+    "items": {
+      "rdsPublic": {
+        "title": "RDSのパブリックアクセスを無効にする",
+        "explanation": "インターネットから到達できるデータベースは探査の対象になります。RDSはプライベートに置き、VPC内（または踏み台／VPNなどの制御された経路）からのみ接続してください。",
+        "concept": "RDSのパブリックアクセスとネットワーク分離"
+      },
+      "monitoringAbsent": {
+        "title": "ログ・メトリクス・アラームのためにCloudWatchを追加する",
+        "explanation": "モニタリングサービスがないと、障害や遅延、容量不足に利用者が気づくまで対応できません。この構成に既にあるサービスに対して、CloudWatchは自然な運用レイヤーです。",
+        "concept": "可観測性（ログ、メトリクス、アラーム）"
+      },
+      "singleComputeNoScaling": {
+        "title": "Auto Scalingなしの単一インスタンス／タスクを避ける",
+        "explanation": "EC2が1台、またはECSタスクが1つだと単一障害点になり、負荷の急増にも耐えられません。台数を増やすか、Auto Scalingを有効にするか、両方を検討してください。",
+        "concept": "高可用性とAuto Scaling"
+      },
+      "tooManyFixedInstances": {
+        "title": "固定の大規模EC2フリートではなくAuto Scalingを使う",
+        "explanation": "Auto Scalingなしで常時5台超は、ピーク容量に対して終日課金していることが多い状態です。Auto Scalingで需要に合わせて容量を合わせます。",
+        "concept": "適切なサイジングと伸縮する容量"
+      },
+      "rdsPrivateSubnet": {
+        "title": "RDSをプライベートサブネットに配置する",
+        "explanation": "データベースをインターネットへのルートがあるサブネットに置くべきではありません。VPCではプライベートサブネット配置が本番の一般的な形です。",
+        "concept": "VPCのパブリック／プライベートサブネット"
+      },
+      "rdsEncryption": {
+        "title": "RDSの保存時暗号化を有効にする",
+        "explanation": "暗号化していないと、スナップショットやボリュームが複製された場合にデータが露出します。保存時暗号化はRDSの基本的な防御です。",
+        "concept": "保存時暗号化（RDS）"
+      },
+      "s3PublicBlocked": {
+        "title": "S3のパブリックアクセスをブロックする",
+        "explanation": "バケットやオブジェクトACLが公開を許すと、オブジェクトがインターネットから読まれます。多くのバケットでは Block Public Access が安全側の既定です。",
+        "concept": "S3 Block Public Access"
+      },
+      "rdsBackups": {
+        "title": "RDSの自動バックアップを有効にする",
+        "explanation": "バックアップがないと、失敗した移行や誤削除から戻せません。自動バックアップはポイントインタイムリカバリの前提でもあります。",
+        "concept": "RDSの自動バックアップとポイントインタイムリカバリ"
+      },
+      "rdsMultiAz": {
+        "title": "RDSでMulti-AZを有効にする",
+        "explanation": "単一AZのデータベースは、そのAZ障害で停止します。Multi-AZは別AZにスタンバイを置き、自動フェイルオーバーします。",
+        "concept": "Multi-AZフェイルオーバー"
+      },
+      "s3Encryption": {
+        "title": "S3オブジェクトの暗号化を有効にする",
+        "explanation": "保存時暗号化はバケット内のデータと、そのコピーを保護します。新規オブジェクトに継承されるよう、バケットのデフォルト暗号化を使います。",
+        "concept": "S3のデフォルト暗号化"
+      },
+      "s3Versioning": {
+        "title": "S3のバージョニングを有効にする",
+        "explanation": "バージョニングは上書きや削除の前の版を残すので、取り消しができます。重要なバケットの基本的な耐久性対策です。",
+        "concept": "S3バージョニング"
+      },
+      "ec2MultiAz": {
+        "title": "EC2を複数のアベイラビリティーゾーンに分散する",
+        "explanation": "1つのAZに置いたインスタンスは、そのAZの障害を共有します。Multi-AZ配置なら、1つのデータセンターを失ってもアプリを継続できます。",
+        "concept": "アベイラビリティーゾーン"
+      },
+      "ecsMultiAz": {
+        "title": "ECS Fargateタスクを複数AZに分散する",
+        "explanation": "単一AZのタスクはそのAZ障害でまとめて停止します。FargateサービスではMulti-AZ配置が一般的な信頼性設定です。",
+        "concept": "アベイラビリティーゾーン（ECS）"
+      },
+      "cloudfrontHttps": {
+        "title": "CloudFrontでHTTPSを必須にする",
+        "explanation": "CDNエッジがHTTPだと、Cookieやトークンが平文になります。オリジンに届く前にビューワーをHTTPSへリダイレクトしてください。",
+        "concept": "CloudFrontエッジでのTLS"
+      },
+      "albHttps": {
+        "title": "Application Load BalancerでHTTPSを必須にする",
+        "explanation": "HTTPのみのALBリスナーは、VPCに入る経路の通信を露出します。ロードバランサーでTLSを終端する（またはHTTPをHTTPSへリダイレクトする）ようにします。",
+        "concept": "ALBでのTLS終端"
+      },
+      "cloudwatchLogs": {
+        "title": "CloudWatchのログを有効にする",
+        "explanation": "メトリクスは異常を示し、ログはその理由を示します。既に選んでいるコンピュート／アプリ層のログ収集を有効にしてください。",
+        "concept": "CloudWatch Logs"
+      },
+      "cloudwatchAlarms": {
+        "title": "CloudWatchのアラームを有効にする",
+        "explanation": "アラームがないログとメトリクスは、誰かがダッシュボードを見続ける必要があります。エラー率・遅延・容量がしきい値を超えたときに通知します。",
+        "concept": "CloudWatch Alarms"
+      },
+      "secretsManagerEnabled": {
+        "title": "Secrets Managerを選んだら認証情報管理を有効にする",
+        "explanation": "サービスは選択済みでも管理がオフだと、認証情報はコードや設定に残り得ます。Secrets Manager経由の取得とローテーションを有効にしてください。",
+        "concept": "Secrets Manager"
+      },
+      "duplicateCompute": {
+        "title": "EC2とECS Fargateの併用を見直す",
+        "explanation": "汎用コンピュートを二つ走らせると、パッチ適用・ネットワーク・コストが二重になりがちです。レガシーVMと新規コンテナのように意図した分割がある場合だけ両方を残します。",
+        "concept": "コンピュート基盤の重複"
+      },
+      "cloudfrontRestrictedOrigin": {
+        "title": "CloudFrontのオリジンアクセスを制限する",
+        "explanation": "ビューワーがCloudFrontを迂回してオリジンに直接届くと、エッジのHTTPS／WAF／キャッシュが任意になります。配信経由だけがオリジンに届くように制限してください。",
+        "concept": "Origin Access Control／オリジンの制限"
+      },
+      "ec2PrivatePlacement": {
+        "title": "EC2インスタンスをプライベートサブネットに置く",
+        "explanation": "パブリックサブネットのインスタンスはインターネットへの経路があり、攻撃面が広がります。アプリサーバーはプライベートサブネットに置き、ロードバランサー経由で公開します。",
+        "concept": "プライベートサブネットとロードバランサー前面"
+      },
+      "wafForPublicEntry": {
+        "title": "公開HTTP入口の前にAWS WAFを検討する",
+        "explanation": "この構成には既にALBまたはCloudFrontがあります。WAFは一般的なWeb攻撃をオリジンの前でフィルタできます。HTTPSやデータベースの非公開化の代わりにはなりません。",
+        "concept": "CloudFrontまたはALB上のAWS WAF"
+      },
+      "secretsManagerForRds": {
+        "title": "RDSの認証情報にSecrets Managerを検討する",
+        "explanation": "データベースがある以上、パスワードの保管場所が必要です。Secrets Managerはイメージや環境変数ファイルに認証情報を置かず、ローテーションもできます。",
+        "concept": "データベース認証情報の保管"
+      },
+      "albForMultipleTargets": {
+        "title": "複数のコンピュートターゲットにALBを検討する",
+        "explanation": "EC2やECSタスクが複数ある場合、トラフィックを分担し、1台の障害を吸収する入口が必要です。HTTPではALBがその一般的な前面です。",
+        "concept": "ターゲット間の負荷分散"
+      }
+    }
   }
 }

@@ -6,19 +6,22 @@ import { Badge, Card, SectionHeader } from '../components/ui/index.js';
 import { buildDefaultConfig, getServiceById } from '../data/awsServices.js';
 import { validateArchitecture } from '../utils/architectureValidation.js';
 import { calculateAssessment } from '../assessment/index.js';
+import { generateRecommendations } from '../recommendations/index.js';
 import './ArchitectureAnalyzerPage.css';
 
 // Day 6 built selection + configuration. Day 7 adds: clicking Continue on a
 // VALID configuration runs the pure, deterministic scoring engine
-// (src/assessment/) and renders its result below. validateArchitecture
-// (utils/architectureValidation.js) is still only the Day 6 form-validity
-// check (at least one compute service, no invalid numbers) — it is NOT the
-// scoring engine and never influences the score.
+// (src/assessment/) and renders its result below. Day 8 runs a second pure
+// engine (src/recommendations/) and appends advice under that result.
+// validateArchitecture (utils/architectureValidation.js) is still only the
+// Day 6 form-validity check — it is NOT the scoring engine and never
+// influences the score or the recommendations.
 function ArchitectureAnalyzerPage() {
   const { t } = useTranslation();
   const [selectedServices, setSelectedServices] = useState([]);
   const [architectureConfig, setArchitectureConfig] = useState({});
   const [assessment, setAssessment] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
 
   const handleToggleService = (serviceId) => {
     const wasSelected = selectedServices.includes(serviceId);
@@ -38,6 +41,7 @@ function ArchitectureAnalyzerPage() {
     // the on-screen assessment must always reflect the CURRENT configuration,
     // never a stale snapshot from before the person kept editing.
     setAssessment(null);
+    setRecommendations([]);
   };
 
   const handleFieldChange = (serviceId, fieldKey, rawValue) => {
@@ -46,6 +50,7 @@ function ArchitectureAnalyzerPage() {
       [serviceId]: { ...prev[serviceId], [fieldKey]: rawValue },
     }));
     setAssessment(null);
+    setRecommendations([]);
   };
 
   const validation = useMemo(
@@ -59,6 +64,7 @@ function ArchitectureAnalyzerPage() {
     // state needed. A fresh object is returned even for identical input, which
     // is what re-triggers AssessmentResult's focus-management effect on re-click.
     setAssessment(calculateAssessment({ selectedServices, architectureConfig }));
+    setRecommendations(generateRecommendations({ selectedServices, architectureConfig }).recommendations);
   };
 
   return (
@@ -96,7 +102,7 @@ function ArchitectureAnalyzerPage() {
         />
       </div>
 
-      {assessment && <AssessmentResult assessment={assessment} />}
+      {assessment && <AssessmentResult assessment={assessment} recommendations={recommendations} />}
     </div>
   );
 }

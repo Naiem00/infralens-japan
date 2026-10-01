@@ -362,5 +362,139 @@
         "monitoringAbsent": "No monitoring service selected (CloudWatch)"
       }
     }
+  },
+  "recommendations": {
+    "title": "Recommendations",
+    "disclaimer": "These recommendations are educational, rules-based advice for this demo configuration. They are not an official AWS Well-Architected review and are not a complete security audit.",
+    "empty": "No additional recommendations for this configuration — no matching gaps were detected.",
+    "conceptLabel": "AWS concept",
+    "priorities": {
+      "critical": "Critical",
+      "high": "High Priority",
+      "recommended": "Recommended",
+      "consider": "Consider"
+    },
+    "items": {
+      "rdsPublic": {
+        "title": "Disable public access on RDS",
+        "explanation": "A publicly reachable database can be probed from the internet. Keep RDS private and reach it only from inside the VPC (or a controlled path such as a bastion or VPN).",
+        "concept": "RDS public accessibility and network isolation"
+      },
+      "monitoringAbsent": {
+        "title": "Add CloudWatch for logs, metrics, and alarms",
+        "explanation": "Without a monitoring service you cannot see failures, latency, or capacity problems until users report them. CloudWatch is the natural operations layer for the services already in this architecture.",
+        "concept": "Observability (logs, metrics, and alarms)"
+      },
+      "singleComputeNoScaling": {
+        "title": "Avoid a single compute instance or task without Auto Scaling",
+        "explanation": "One EC2 instance or one ECS task is a single point of failure, and it cannot absorb load spikes. Run more than one, enable Auto Scaling, or both.",
+        "concept": "High availability and Auto Scaling"
+      },
+      "tooManyFixedInstances": {
+        "title": "Turn on Auto Scaling instead of a large fixed EC2 fleet",
+        "explanation": "More than five always-on instances with no scaling usually means you pay for peak capacity all day. Auto Scaling matches capacity to demand.",
+        "concept": "Right-sizing and elastic capacity"
+      },
+      "rdsPrivateSubnet": {
+        "title": "Place RDS in a private subnet",
+        "explanation": "Databases should not sit on a subnet with a route to the internet. Private subnet placement is the usual production pattern in a VPC.",
+        "concept": "VPC public vs private subnets"
+      },
+      "rdsEncryption": {
+        "title": "Enable encryption at rest for RDS",
+        "explanation": "Unencrypted storage exposes data if a snapshot or volume is copied out of the account. Encryption at rest is a baseline RDS control.",
+        "concept": "Encryption at rest (RDS)"
+      },
+      "s3PublicBlocked": {
+        "title": "Block public access on S3",
+        "explanation": "Objects become internet-readable if the bucket (or an object ACL) allows public access. Block Public Access is the default-safe control for most buckets.",
+        "concept": "S3 Block Public Access"
+      },
+      "rdsBackups": {
+        "title": "Enable automated RDS backups",
+        "explanation": "Without backups, a failed migration or accidental delete has no restore path. Automated backups also underpin point-in-time recovery.",
+        "concept": "RDS automated backups and point-in-time recovery"
+      },
+      "rdsMultiAz": {
+        "title": "Enable Multi-AZ for RDS",
+        "explanation": "A single-AZ database is unavailable if that Availability Zone fails. Multi-AZ keeps a standby in another AZ and fails over automatically.",
+        "concept": "Multi-AZ failover"
+      },
+      "s3Encryption": {
+        "title": "Enable encryption for S3 objects",
+        "explanation": "Encryption at rest protects object data in the bucket and in snapshots of that data. Use bucket default encryption so new objects inherit it.",
+        "concept": "S3 default encryption"
+      },
+      "s3Versioning": {
+        "title": "Enable S3 versioning",
+        "explanation": "Versioning keeps prior object versions so an overwrite or delete can be undone. It is a basic durability control for important buckets.",
+        "concept": "S3 versioning"
+      },
+      "ec2MultiAz": {
+        "title": "Spread EC2 across multiple Availability Zones",
+        "explanation": "Instances in one AZ share that AZ's failure domain. Multi-AZ placement keeps the application running if one data center is lost.",
+        "concept": "Availability Zones"
+      },
+      "ecsMultiAz": {
+        "title": "Spread ECS Fargate tasks across multiple Availability Zones",
+        "explanation": "Tasks in a single AZ go down together if that AZ fails. Multi-AZ task placement is the usual reliability setting for Fargate services.",
+        "concept": "Availability Zones (ECS)"
+      },
+      "cloudfrontHttps": {
+        "title": "Require HTTPS on CloudFront",
+        "explanation": "HTTP at the CDN edge sends cookies and tokens in the clear. Redirect viewers to HTTPS before they reach the origin.",
+        "concept": "TLS at the CloudFront edge"
+      },
+      "albHttps": {
+        "title": "Require HTTPS on the Application Load Balancer",
+        "explanation": "An HTTP-only ALB listener exposes traffic on the path into the VPC. Terminate TLS on the load balancer (or redirect HTTP to HTTPS).",
+        "concept": "TLS termination on ALB"
+      },
+      "cloudwatchLogs": {
+        "title": "Enable CloudWatch logs",
+        "explanation": "Metrics show that something is wrong; logs show why. Turn on log collection for the compute and application layers you already selected.",
+        "concept": "CloudWatch Logs"
+      },
+      "cloudwatchAlarms": {
+        "title": "Enable CloudWatch alarms",
+        "explanation": "Logs and metrics without alarms still require someone to watch dashboards. Alarms notify you when error rate, latency, or capacity crosses a threshold.",
+        "concept": "CloudWatch Alarms"
+      },
+      "secretsManagerEnabled": {
+        "title": "Use Secrets Manager for credentials instead of leaving it unused",
+        "explanation": "The service is selected but secrets management is off, so credentials can still end up in code or config. Enable rotation and retrieval through Secrets Manager.",
+        "concept": "Secrets Manager"
+      },
+      "duplicateCompute": {
+        "title": "Review running both EC2 and ECS Fargate",
+        "explanation": "Two general-purpose compute platforms often means duplicated patching, networking, and cost. Keep both only when there is a deliberate split (for example, a legacy VM plus new containers).",
+        "concept": "Compute platform overlap"
+      },
+      "cloudfrontRestrictedOrigin": {
+        "title": "Restrict CloudFront origin access",
+        "explanation": "If viewers can bypass CloudFront and hit the origin directly, edge controls (HTTPS, WAF, caching) are optional. Restrict the origin so traffic must come through the distribution.",
+        "concept": "Origin Access Control / restricted origins"
+      },
+      "ec2PrivatePlacement": {
+        "title": "Place EC2 instances in a private subnet",
+        "explanation": "Public-subnet instances have a path to the internet and a larger attack surface. Put application servers in private subnets and expose them through a load balancer.",
+        "concept": "Private subnets and load-balancer fronts"
+      },
+      "wafForPublicEntry": {
+        "title": "Consider AWS WAF in front of the public HTTP entry",
+        "explanation": "This architecture already has ALB or CloudFront facing the network. WAF can filter common web exploits before they reach the origin. It is optional, not a substitute for HTTPS and private databases.",
+        "concept": "AWS WAF on CloudFront or ALB"
+      },
+      "secretsManagerForRds": {
+        "title": "Consider Secrets Manager for RDS credentials",
+        "explanation": "A database is in the architecture, so something must store the password. Secrets Manager keeps credentials out of images and environment files and can rotate them.",
+        "concept": "Database credential storage"
+      },
+      "albForMultipleTargets": {
+        "title": "Consider an Application Load Balancer for multiple compute targets",
+        "explanation": "More than one EC2 instance or ECS task needs a way to share traffic and to survive a single target failing. An ALB is the usual HTTP front door for that pattern.",
+        "concept": "Load balancing across targets"
+      }
+    }
   }
 }
