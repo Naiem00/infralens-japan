@@ -496,5 +496,22 @@
         "concept": "Load balancing across targets"
       }
     }
+  },
+  "visualization": {
+    "title": "Architecture Visualization",
+    "description": "Live conceptual view of the AWS services currently selected above.",
+    "empty": "Select AWS services above to build the architecture visualization.",
+    "userInternet": "User / Internet",
+    "supporting": "Supporting Services",
+    "vpcContext": "Amazon VPC selected — the architecture is shown in VPC context.",
+    "lanes": {
+      "user": "User",
+      "dns": "DNS",
+      "edge": "Edge",
+      "entry": "Entry",
+      "compute": "Compute",
+      "data": "Data",
+      "messaging": "Messaging"
+    }
   }
 }

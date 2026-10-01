@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArchitectureSummary, ConfigPanel, ServiceSelector } from '../components/architecture/index.js';
+import ArchitectureDiagram from '../components/architecture/ArchitectureDiagram.jsx';
 import { AssessmentResult } from '../components/assessment/index.js';
 import { Badge, Card, SectionHeader } from '../components/ui/index.js';
 import { buildDefaultConfig, getServiceById } from '../data/awsServices.js';
@@ -101,6 +102,11 @@ function ArchitectureAnalyzerPage() {
           onContinue={handleContinue}
         />
       </div>
+
+      <ArchitectureDiagram
+        selectedServices={selectedServices}
+        architectureConfig={architectureConfig}
+      />
 
       {assessment && <AssessmentResult assessment={assessment} recommendations={recommendations} />}
     </div>

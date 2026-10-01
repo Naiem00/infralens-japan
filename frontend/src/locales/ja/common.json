@@ -496,5 +496,22 @@
         "concept": "ターゲット間の負荷分散"
       }
     }
+  },
+  "visualization": {
+    "title": "アーキテクチャ可視化",
+    "description": "上で現在選択されているAWSサービスを概念的に可視化します。",
+    "empty": "上でAWSサービスを選択すると、アーキテクチャ図が表示されます。",
+    "userInternet": "ユーザー / インターネット",
+    "supporting": "補助サービス",
+    "vpcContext": "Amazon VPCが選択されています。VPC内の構成として表示しています。",
+    "lanes": {
+      "user": "ユーザー",
+      "dns": "DNS",
+      "edge": "エッジ",
+      "entry": "入口",
+      "compute": "コンピューティング",
+      "data": "データ",
+      "messaging": "メッセージング"
+    }
   }
 }

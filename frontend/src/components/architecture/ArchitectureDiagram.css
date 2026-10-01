@@ -1,0 +1,113 @@
+.architecture-diagram {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg-card);
+}
+
+.architecture-diagram h2,
+.architecture-diagram h3,
+.architecture-diagram p {
+  margin: 0;
+}
+
+.architecture-diagram__empty {
+  color: var(--text-secondary);
+}
+
+.architecture-diagram__vpc {
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--accent);
+  border-radius: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.architecture-diagram__flow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.architecture-diagram__step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.architecture-diagram__arrow {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.architecture-diagram__lane {
+  min-width: 10rem;
+}
+
+.architecture-diagram__lane-title {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.architecture-diagram__nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.architecture-diagram__node {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+}
+
+.architecture-diagram__node--concept {
+  border-style: dashed;
+}
+
+.architecture-diagram__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.architecture-diagram__badge {
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+}
+
+.architecture-diagram__support {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.architecture-diagram__support h3 {
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .architecture-diagram__flow,
+  .architecture-diagram__step {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .architecture-diagram__arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  .architecture-diagram__lane {
+    width: 100%;
+  }
+}
