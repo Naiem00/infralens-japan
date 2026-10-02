@@ -4,6 +4,7 @@ import { env } from './config/env.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFound } from './middleware/notFound.js';
 import assessmentRoutes from './routes/assessmentRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import healthRoutes from './routes/healthRoutes.js';
 
 export function createApp() {
@@ -28,6 +29,7 @@ export function createApp() {
 
   app.use('/api/health', healthRoutes);
   app.use('/api/assessments', assessmentRoutes);
+  app.use('/api/auth', authRoutes);
 
   app.use(notFound);
   app.use(errorHandler);

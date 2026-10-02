@@ -1,19 +1,43 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { pool } from '../src/config/database.js';
 
-const migrationUrl = new URL(
-  '../migrations/001_initial_schema.sql',
-  import.meta.url
+const currentFile = fileURLToPath(import.meta.url);
+const currentDir = path.dirname(currentFile);
+
+const migrationsDir = path.resolve(
+  currentDir,
+  '../migrations'
 );
 
 try {
-  const sql = await fs.readFile(migrationUrl, 'utf8');
+  const files = (
+    await fs.readdir(migrationsDir)
+  )
+    .filter((file) => file.endsWith('.sql'))
+    .sort();
 
-  await pool.query(sql);
+  for (const file of files) {
+    const sql = await fs.readFile(
+      path.join(migrationsDir, file),
+      'utf8'
+    );
 
-  console.log('PASS PostgreSQL migration completed');
+    await pool.query(sql);
+
+    console.log(`PASS ${file}`);
+  }
+
+  console.log(
+    '\nPASS PostgreSQL migrations completed'
+  );
 } catch (error) {
-  console.error('Migration failed:', error.message);
+  console.error(
+    'Migration failed:',
+    error.message
+  );
+
   process.exitCode = 1;
 } finally {
   await pool.end();
