@@ -669,5 +669,13 @@
       "data": "Data",
       "messaging": "Messaging"
     }
+  },
+  "integration": {
+    "saveTitle": "Save assessment",
+    "saveDescription": "Persist this assessment result to the InfraLens backend and PostgreSQL database.",
+    "saveButton": "Save assessment",
+    "saving": "Saving...",
+    "saved": "Saved successfully as assessment #{{id}}.",
+    "error": "Could not save the assessment. Check that the backend API is running."
   }
 }

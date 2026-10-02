@@ -98,6 +98,10 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | PostgreSQL Database | ✅ Done (Day 14) |
 | Assessment API | ✅ Done (Day 15) |
 | Authentication | ✅ Done (Day 16) |
+| Saved Architectures | ✅ Done (Day 17) |
+| Frontend / Backend Integration | ✅ Done (Day 18) |
+| Integration Testing | ✅ Done (Day 19) |
+| Terraform Networking | ✅ Done (Day 20) |
 | Backend / API | ⏳ Not yet implemented |
 | Authentication | ⏳ Not yet implemented |
 | Terraform infrastructure | ⏳ Not yet implemented |

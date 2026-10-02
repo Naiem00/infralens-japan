@@ -669,5 +669,13 @@
       "data": "データ",
       "messaging": "メッセージング"
     }
+  },
+  "integration": {
+    "saveTitle": "評価結果を保存",
+    "saveDescription": "この評価結果をInfraLensバックエンドとPostgreSQLデータベースへ保存します。",
+    "saveButton": "評価結果を保存",
+    "saving": "保存中...",
+    "saved": "評価 #{{id}} として保存しました。",
+    "error": "評価結果を保存できませんでした。バックエンドAPIが起動しているか確認してください。"
   }
 }

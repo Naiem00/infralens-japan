@@ -9,6 +9,7 @@ import { validateArchitecture } from '../utils/architectureValidation.js';
 import { calculateAssessment } from '../assessment/index.js';
 import { generateRecommendations } from '../recommendations/index.js';
 import './ArchitectureAnalyzerPage.css';
+import AssessmentPersistence from '../components/integration/AssessmentPersistence.jsx';
 
 // Day 6 built selection + configuration. Day 7 adds: clicking Continue on a
 // VALID configuration runs the pure, deterministic scoring engine
@@ -108,7 +109,21 @@ function ArchitectureAnalyzerPage() {
         architectureConfig={architectureConfig}
       />
 
-      {assessment && <AssessmentResult assessment={assessment} recommendations={recommendations} />}
+      {assessment && (
+        <>
+          <AssessmentPersistence
+            selectedServices={selectedServices}
+            architectureConfig={architectureConfig}
+            assessment={assessment}
+            recommendations={recommendations}
+          />
+
+          <AssessmentResult
+            assessment={assessment}
+            recommendations={recommendations}
+          />
+        </>
+      )}
     </div>
   );
 }
