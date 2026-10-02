@@ -80,15 +80,15 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 
 ## Project Status
 
-| Area | Status |
-|---|---|
+| Feature | Status |
+| --- | --- |
 | Repository scaffold | ✅ Done (Day 1) |
-| Frontend setup (Vite, React Router, base layout) | ✅ Done (Day 2) |
-| Design system & responsive shell | ✅ Done (Day 3) |
-| Bilingual (i18next) | ✅ Done (Day 4) |
-| Dashboard UI (stat cards, charts, sample data) | ✅ Done (Day 5) |
-| Architecture Analyzer (service selector + configuration UI) | ✅ Done (Day 6) |
-| Assessment rules engine (deterministic scoring) | ✅ Done (Day 7) |
+| Frontend setup | ✅ Done (Day 2) |
+| Design system | ✅ Done (Day 3) |
+| Bilingual EN/JA | ✅ Done (Day 4) |
+| Dashboard | ✅ Done (Day 5) |
+| Architecture Analyzer | ✅ Done (Day 6) |
+| Assessment rules engine | ✅ Done (Day 7) |
 | Recommendation engine | ✅ Done (Day 8) |
 | Architecture visualization | ✅ Done (Day 9) |
 | Failure Simulator | ✅ Done (Day 10) |
@@ -102,10 +102,16 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | Frontend / Backend Integration | ✅ Done (Day 18) |
 | Integration Testing | ✅ Done (Day 19) |
 | Terraform Networking | ✅ Done (Day 20) |
-| Backend / API | ⏳ Not yet implemented |
-| Authentication | ⏳ Not yet implemented |
-| Terraform infrastructure | ⏳ Not yet implemented |
-| CI/CD (GitHub Actions + OIDC) | ⏳ Not yet implemented |
+| Frontend Hosting Infrastructure | ✅ Done (Day 21) |
+| Backend Hosting Infrastructure | ✅ Done (Day 22) |
+| RDS PostgreSQL Infrastructure | ✅ Done (Day 23) |
+| Monitoring & Security Baseline | ✅ Done (Day 24) |
+| GitHub Actions CI | ✅ Done (Day 25) |
+| OIDC Deployment Workflow | ⏳ Day 26 |
+| Documentation / ADRs | ⏳ Day 27 |
+| Production Review | ⏳ Day 28 |
+| Polish / Accessibility | ⏳ Day 29 |
+| Final Deployment / Portfolio | ⏳ Day 30 |
 
 Development follows an incremental, day-by-day roadmap. See commit history and future documentation under `docs/` for progress.
 
