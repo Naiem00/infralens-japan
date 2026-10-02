@@ -96,6 +96,7 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | Cost Calculator | ✅ Done (Day 12) |
 | Backend / Express API | ✅ Done (Day 13) |
 | PostgreSQL Database | ✅ Done (Day 14) |
+| Assessment API | ✅ Done (Day 15) |
 | Backend / API | ⏳ Not yet implemented |
 | Authentication | ⏳ Not yet implemented |
 | Terraform infrastructure | ⏳ Not yet implemented |
