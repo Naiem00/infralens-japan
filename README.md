@@ -1,5 +1,10 @@
 # InfraLens Japan
 
+## Live Demo
+
+https://d24vwnzgbvotf9.cloudfront.net
+
+
 **Bilingual (English / Japanese) AWS architecture assessment and learning platform.**
 
 > ⚠️ **Project status: Early scaffold (Day 1 of 30).** Most features described below are **planned** and **not yet implemented**. This README will be updated as development progresses.
@@ -107,11 +112,11 @@ All statistics, cost estimates, assessment histories, and usage figures shown in
 | RDS PostgreSQL Infrastructure | ✅ Done (Day 23) |
 | Monitoring & Security Baseline | ✅ Done (Day 24) |
 | GitHub Actions CI | ✅ Done (Day 25) |
-| OIDC Deployment Workflow | ⏳ Day 26 |
-| Documentation / ADRs | ⏳ Day 27 |
-| Production Review | ⏳ Day 28 |
-| Polish / Accessibility | ⏳ Day 29 |
-| Final Deployment / Portfolio | ⏳ Day 30 |
+| OIDC Deployment Workflow | ✅ Done (Day 26) |
+| Documentation / ADRs | ✅ Done (Day 27) |
+| Production Review | ✅ Done (Day 28) |
+| Polish / Accessibility | ✅ Done (Day 29) |
+| Final Deployment / Portfolio | ✅ Done (Day 30) |
 
 Development follows an incremental, day-by-day roadmap. See commit history and future documentation under `docs/` for progress.
 
