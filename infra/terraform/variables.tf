@@ -77,11 +77,6 @@ variable "db_username" {
   default     = "infralens_admin"
 }
 
-variable "db_password" {
-  description = "PostgreSQL master password. Supply securely; never commit it."
-  type        = string
-  sensitive   = true
-}
 
 variable "db_multi_az" {
   description = "Whether RDS Multi-AZ is enabled."
@@ -92,5 +87,5 @@ variable "db_multi_az" {
 variable "db_backup_retention_days" {
   description = "RDS automated backup retention in days."
   type        = number
-  default     = 7
+  default     = 0
 }

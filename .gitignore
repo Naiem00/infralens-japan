@@ -74,3 +74,4 @@ venv/
 # ---- Misc ----
 *.bak
 *.tmp
+infra/terraform/backend.hcl
