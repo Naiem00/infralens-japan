@@ -322,8 +322,71 @@
     "footerNotice": "Always verify real architecture pricing with the official AWS Pricing Calculator before making cost decisions."
   },
   "productionReadiness": {
+    "eyebrow": "Architecture review",
     "title": "Production Readiness Checklist",
-    "description": "Check an architecture against security, reliability, monitoring and operations practices."
+    "description": "Review key security, reliability, monitoring and operational practices before treating an architecture as production ready.",
+    "summary": {
+      "title": "Readiness progress",
+      "completed": "{{completed}} of {{total}} checks completed",
+      "progressLabel": "Production readiness progress"
+    },
+    "categories": {
+      "security": "Security",
+      "reliability": "Reliability",
+      "monitoring": "Monitoring",
+      "operations": "Operations"
+    },
+    "checks": {
+      "mfa": {
+        "title": "Protect privileged access with MFA",
+        "description": "Require MFA for privileged and sensitive administrative access."
+      },
+      "leastPrivilege": {
+        "title": "Apply least-privilege IAM",
+        "description": "Grant only the permissions required for each workload and role."
+      },
+      "encryption": {
+        "title": "Encrypt sensitive data",
+        "description": "Use encryption for data at rest and in transit."
+      },
+      "multiAz": {
+        "title": "Design for Availability Zone failure",
+        "description": "Avoid single-AZ dependencies for critical production workloads."
+      },
+      "backups": {
+        "title": "Configure and verify backups",
+        "description": "Define backup retention and confirm restoration procedures."
+      },
+      "scaling": {
+        "title": "Plan for scaling",
+        "description": "Use appropriate scaling strategies for changing workload demand."
+      },
+      "logs": {
+        "title": "Centralize application and infrastructure logs",
+        "description": "Collect logs needed for troubleshooting and operational visibility."
+      },
+      "alarms": {
+        "title": "Create actionable alarms",
+        "description": "Monitor important health, capacity and failure indicators."
+      },
+      "auditTrail": {
+        "title": "Maintain an audit trail",
+        "description": "Record important account and infrastructure activity."
+      },
+      "runbook": {
+        "title": "Document operational runbooks",
+        "description": "Define repeatable procedures for common incidents and maintenance."
+      },
+      "costReview": {
+        "title": "Review expected cost",
+        "description": "Estimate recurring infrastructure cost before deployment."
+      },
+      "recoveryTest": {
+        "title": "Test recovery procedures",
+        "description": "Validate that recovery steps work before they are needed."
+      }
+    },
+    "notice": "This checklist is an educational readiness aid, not a substitute for a formal production or security review."
   },
   "notFound": {
     "title": "404 — Page Not Found",

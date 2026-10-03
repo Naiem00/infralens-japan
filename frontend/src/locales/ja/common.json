@@ -322,8 +322,71 @@
     "footerNotice": "実際のコスト判断を行う前に、AWS Pricing Calculatorで正式な料金を必ず確認してください。"
   },
   "productionReadiness": {
+    "eyebrow": "アーキテクチャレビュー",
     "title": "本番運用準備チェックリスト",
-    "description": "セキュリティ・信頼性・モニタリング・運用の観点で、アーキテクチャを確認できます。"
+    "description": "本番運用を想定する前に、セキュリティ・信頼性・モニタリング・運用に関する主要項目を確認します。",
+    "summary": {
+      "title": "準備状況",
+      "completed": "{{total}}項目中{{completed}}項目完了",
+      "progressLabel": "本番運用準備の進捗"
+    },
+    "categories": {
+      "security": "セキュリティ",
+      "reliability": "信頼性",
+      "monitoring": "モニタリング",
+      "operations": "運用"
+    },
+    "checks": {
+      "mfa": {
+        "title": "特権アクセスをMFAで保護",
+        "description": "管理者権限など重要なアクセスにはMFAを使用します。"
+      },
+      "leastPrivilege": {
+        "title": "最小権限のIAMを適用",
+        "description": "各ワークロードとロールに必要最小限の権限のみを付与します。"
+      },
+      "encryption": {
+        "title": "機密データを暗号化",
+        "description": "保存時および通信時のデータ暗号化を使用します。"
+      },
+      "multiAz": {
+        "title": "AZ障害を考慮した設計",
+        "description": "重要な本番ワークロードで単一AZへの依存を避けます。"
+      },
+      "backups": {
+        "title": "バックアップを設定・確認",
+        "description": "保持期間を定義し、復元手順を確認します。"
+      },
+      "scaling": {
+        "title": "スケーリングを計画",
+        "description": "負荷変動に対応できる適切なスケーリング方式を採用します。"
+      },
+      "logs": {
+        "title": "ログを一元管理",
+        "description": "トラブルシューティングと運用監視に必要なログを収集します。"
+      },
+      "alarms": {
+        "title": "実用的なアラームを設定",
+        "description": "重要な健全性・容量・障害指標を監視します。"
+      },
+      "auditTrail": {
+        "title": "監査証跡を保持",
+        "description": "重要なアカウント操作とインフラ変更を記録します。"
+      },
+      "runbook": {
+        "title": "運用Runbookを文書化",
+        "description": "一般的な障害対応や保守作業の手順を定義します。"
+      },
+      "costReview": {
+        "title": "想定コストを確認",
+        "description": "デプロイ前に継続的なインフラコストを見積もります。"
+      },
+      "recoveryTest": {
+        "title": "復旧手順をテスト",
+        "description": "実際に必要になる前に復旧手順が機能することを確認します。"
+      }
+    },
+    "notice": "このチェックリストは学習用の準備確認ツールであり、正式な本番環境・セキュリティレビューの代替ではありません。"
   },
   "notFound": {
     "title": "404 — ページが見つかりません",
