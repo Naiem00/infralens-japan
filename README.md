@@ -1,148 +1,159 @@
 # InfraLens Japan
 
-## Live Demo
+**An English/Japanese AWS architecture assessment and learning application, built as a cloud/infrastructure engineering portfolio project.**
 
-https://d24vwnzgbvotf9.cloudfront.net
+**[GitHub repository](https://github.com/Naiem00/infralens-japan)** · **[日本語 README](README.ja.md)** · **[Architecture notes](docs/architecture.md)**
 
+**Demo URL recorded in this repository:** https://d24vwnzgbvotf9.cloudfront.net
+**Additional project homepage URL:** https://infralens-japan.vercel.app
 
-**Bilingual (English / Japanese) AWS architecture assessment and learning platform.**
+> **Demo and deployment note:** The URLs above are project links; their current availability has not been independently confirmed during this documentation update. The repository includes substantial application code and Terraform configurations, but its infrastructure documentation says the full Terraform-managed AWS stack has **not been applied to production**. A public URL alone is not evidence that the complete AWS architecture below is deployed.
+>
+> This is an independent educational project and is **not affiliated with or endorsed by AWS**.
 
-> ⚠️ **Project status: Early scaffold (Day 1 of 30).** Most features described below are **planned** and **not yet implemented**. This README will be updated as development progresses.
+## What it does
 
-> This project is **not affiliated with, endorsed by, or sponsored by Amazon Web Services (AWS)**. It is an independent educational/portfolio project.
+InfraLens Japan allows users to explore AWS-style architecture choices and receive **deterministic, rules-based feedback** about design trade-offs. It is an educational simulator, not a production cloud audit or a real-time AWS account analyzer.
 
----
+The application source includes:
 
-## Overview
+| Feature | Status in the repository | Scope |
+| --- | --- | --- |
+| English / Japanese interface | ✅ Implemented | `i18next` and EN/JA resources |
+| Dashboard and charts | ✅ Implemented | Clearly marked **sample** activity/score data |
+| Architecture Analyzer | ✅ Implemented | Service selection, configuration and validation |
+| Assessment engine | ✅ Implemented | Deterministic scoring rules |
+| Recommendation engine | ✅ Implemented | Prioritized, explainable suggestions |
+| Architecture diagram | ✅ Implemented | Generated visualization component |
+| Failure Simulator | ✅ Implemented | Predefined demo architecture and selectable scenarios; **not** a live AWS fault-injection service |
+| AWS Service Compare | ✅ Implemented | Educational comparisons and trade-offs |
+| Cost Calculator | ✅ Implemented | Approximate **sample JPY estimates**, not the AWS Pricing API |
+| Production Readiness | ✅ Implemented | Interactive checklist for security, reliability and operations |
+| Express API and PostgreSQL access | ✅ Implemented in code | Live database operations not independently verified |
+| Registration, login, saved architectures | ✅ Implemented in backend code | Production integration not independently verified |
+| Terraform AWS resources | ✅ Configurations written | No verified `terraform apply` or full production rollout |
+| GitHub Actions CI | ✅ Verified | Successful CI runs; see repository Actions history |
+| GitHub OIDC workflow | 🚧 Plan workflow written | Manually triggered `terraform plan`; **no automated apply** |
 
-InfraLens Japan is being built as a serious portfolio project to demonstrate practical cloud, infrastructure, full-stack, AWS, Terraform, security, and CI/CD skills for Cloud Engineer, Infrastructure Engineer, AWS Engineer, and Junior DevOps/Platform Engineer roles in Japan.
+## Stack
 
-Users will be able to configure an AWS-style architecture and receive **explainable, rules-based feedback** — not random scores — about its reliability, security, cost-efficiency, performance, and operational maturity. The goal is to help engineers *understand architecture decisions*, not just memorize AWS service definitions.
+- **Frontend:** React 18, Vite, React Router 6, i18next, Chart.js
+- **Backend:** Node.js, Express, JWT/bcrypt authentication, REST endpoints
+- **Database:** PostgreSQL; AWS RDS is part of the proposed infrastructure
+- **Infrastructure as Code:** Terraform (`infra/terraform/`)
+- **Cloud design:** AWS VPC, public/private subnets, S3, CloudFront, ECR, ECS Fargate, ALB, RDS and CloudWatch
+- **Automation:** GitHub Actions CI, plus an OIDC-authenticated Terraform **plan** workflow
 
-## Purpose
+## Application architecture
 
-This project is designed to demonstrate practical understanding of:
-
-- AWS architecture & cloud networking
-- High availability & fault tolerance
-- AWS security best practices
-- Monitoring & observability
-- Infrastructure as Code (Terraform)
-- CI/CD (GitHub Actions with OIDC)
-- Cost optimization
-- Application deployment
-- Database design
-- Frontend/backend integration
-- Bilingual (EN/JA) application development
-
-Every significant technical decision in this project is intended to be explainable in a technical interview (e.g. *why ECS Fargate over EC2*, *why RDS sits in private subnets*, *why Multi-AZ matters*, *why GitHub Actions uses OIDC instead of static AWS keys*).
-
-## Planned Features
-
-- 📊 **Dashboard** — architecture/assessment activity, score history *(planned)*
-- 🏗️ **Architecture Analyzer** — configure AWS services (compute, database, storage, networking, delivery, security, monitoring, messaging) *(planned)*
-- ✅ **Architecture Assessment** — deterministic, rules-based scoring (Reliability, Security, Cost Efficiency, Performance, Operations) *(planned)*
-- 💡 **Recommendation Engine** — Critical / High Priority / Recommended / Consider, each with explanation and AWS concept *(implemented, Day 8)*
-- 🗺️ **Architecture Visualization** — generated diagrams of traffic flow, AZs, public/private boundaries *(planned)*
-- 💥 **Failure Simulator** — simulate EC2/ECS/RDS/AZ failures and see cascading impact *(planned)*
-- ⚖️ **AWS Service Compare** — real architectural trade-offs (EC2 vs ECS vs Lambda, RDS vs DynamoDB, etc.) *(planned)*
-- 💰 **Cost Calculator** — simplified JPY cost estimates, clearly labeled as sample data *(planned)*
-- 📋 **Production Readiness Checklist** — security, reliability, monitoring, operations *(planned)*
-- 🔐 **Authentication** — save architectures/assessments *(planned, future implementation)*
-
-## Planned Technology Stack
-
-**Frontend:** React 18, Vite, React Router v6, i18next, Chart.js, JavaScript (no TypeScript)
-**Backend:** Node.js, Express, REST API, layered architecture (routes/controllers/services/repositories)
-**Database:** PostgreSQL (Amazon RDS in production)
-**Infrastructure as Code:** Terraform (modular, environment-separated: dev/prod)
-**Cloud Provider:** AWS, primary region `ap-northeast-1` (Tokyo)
-**CI/CD:** GitHub Actions, authenticating to AWS via **OIDC federation** (no static AWS access keys)
-
-## Planned AWS Architecture
-
-A high-level target architecture (subject to refinement as the project develops):
-
-```
-Frontend delivery:
-User → Route 53 → CloudFront → S3 (static frontend)
-
-Backend delivery:
-User → ALB → ECS Fargate (backend API) → RDS PostgreSQL (private subnet, Multi-AZ)
+```text
+React frontend (EN / JA)
+   |-- Dashboard & charts (sample data)
+   |-- Architecture assessment and recommendations
+   |-- Failure simulator / service comparisons / sample costs
+   |
+   +---- REST API (Express)
+               |
+               +---- PostgreSQL (development / intended hosted database)
 ```
 
-Supporting services (planned): VPC with public/private subnets, Internet Gateway, NAT Gateway, IAM (least privilege), Secrets Manager, KMS, CloudWatch, ACM, WAF.
+### Proposed AWS infrastructure (Terraform code; not a verified live deployment)
 
-A detailed architecture diagram and Architecture Decision Records (ADRs) will be added under `docs/` as infrastructure decisions are made.
+```text
+Users -> CloudFront -> private S3 frontend bucket (OAC)
+          |
+          +-- /api/* -> public ALB -> ECS Fargate API -> private RDS PostgreSQL
 
-## Bilingual Support
-
-The complete UI is planned to work in **English** and **Japanese**, using `i18next`. All user-facing sample data will be clearly labeled as **Sample Data / サンプルデータ**.
-
-## Sample Data Disclaimer
-
-All statistics, cost estimates, assessment histories, and usage figures shown in this application are **fictional sample data** created for demonstration purposes. They are **not real AWS pricing** and **not real customer data**. Any cost figures will be clearly labeled **"Sample Estimate / サンプル見積もり"**, and actual AWS pricing should always be verified against official AWS pricing pages.
-
-## Project Status
-
-| Feature | Status |
-| --- | --- |
-| Repository scaffold | ✅ Done (Day 1) |
-| Frontend setup | ✅ Done (Day 2) |
-| Design system | ✅ Done (Day 3) |
-| Bilingual EN/JA | ✅ Done (Day 4) |
-| Dashboard | ✅ Done (Day 5) |
-| Architecture Analyzer | ✅ Done (Day 6) |
-| Assessment rules engine | ✅ Done (Day 7) |
-| Recommendation engine | ✅ Done (Day 8) |
-| Architecture visualization | ✅ Done (Day 9) |
-| Failure Simulator | ✅ Done (Day 10) |
-| AWS Service Compare | ✅ Done (Day 11) |
-| Cost Calculator | ✅ Done (Day 12) |
-| Backend / Express API | ✅ Done (Day 13) |
-| PostgreSQL Database | ✅ Done (Day 14) |
-| Assessment API | ✅ Done (Day 15) |
-| Authentication | ✅ Done (Day 16) |
-| Saved Architectures | ✅ Done (Day 17) |
-| Frontend / Backend Integration | ✅ Done (Day 18) |
-| Integration Testing | ✅ Done (Day 19) |
-| Terraform Networking | ✅ Done (Day 20) |
-| Frontend Hosting Infrastructure | ✅ Done (Day 21) |
-| Backend Hosting Infrastructure | ✅ Done (Day 22) |
-| RDS PostgreSQL Infrastructure | ✅ Done (Day 23) |
-| Monitoring & Security Baseline | ✅ Done (Day 24) |
-| GitHub Actions CI | ✅ Done (Day 25) |
-| OIDC Deployment Workflow | ✅ Done (Day 26) |
-| Documentation / ADRs | ✅ Done (Day 27) |
-| Production Review | ✅ Done (Day 28) |
-| Polish / Accessibility | ✅ Done (Day 29) |
-| Final Deployment / Portfolio | ✅ Done (Day 30) |
-
-Development follows an incremental, day-by-day roadmap. See commit history and future documentation under `docs/` for progress.
-
-## Repository Structure
-
+VPC: public/private subnets across two AZs
+Operations: CloudWatch logs/alarms, IAM task roles, encrypted storage
 ```
+
+Terraform uses a simplified development network design. Its public ALB currently has an HTTP listener, and ECS networking needs additional production security review. See [architecture](docs/architecture.md) and [production-readiness review](docs/production-readiness.md). Never interpret the diagram as proof that all resources are currently deployed.
+
+## Run locally
+
+**Prerequisites:** Node.js 22+, npm, PostgreSQL (if testing API/database-backed features).
+
+```bash
+# Backend — separate terminal
+cd backend
+npm ci
+cp .env.example .env
+# Configure DATABASE_URL and JWT_SECRET before running
+npm run db:migrate
+npm run dev
+
+# Frontend — from repository root, another terminal
+cd frontend
+npm ci
+cp .env.example .env
+npm run dev
+```
+
+The frontend's `VITE_API_BASE_URL` points to the backend API URL. Backend development settings are in [`backend/.env.example`](backend/.env.example); do not commit real secrets. Database migrations must be run against a database you control. The development-only JWT fallback must not be used in production.
+
+## Verification
+
+The repository has [GitHub Actions CI](.github/workflows/ci.yml) for the frontend, backend and Terraform checks. A successful past run is visible in [Actions history](https://github.com/Naiem00/infralens-japan/actions); it does not establish current production health.
+
+```bash
+# Backend (requires appropriate local setup)
+cd backend
+npm ci
+npm run verify
+node scripts/verifyAssessmentApi.mjs
+node scripts/verifyAuth.mjs
+node scripts/verifySavedArchitectures.mjs
+
+# Frontend
+cd ../frontend
+npm ci
+node scripts/verifyAssessment.mjs
+node scripts/verifyRecommendations.mjs
+node scripts/verifyFailureSimulator.mjs
+node scripts/verifyServiceCompare.mjs
+node scripts/verifyCostCalculator.mjs
+node scripts/verifyVisualization.mjs
+npm run build
+
+# Terraform — config checks only; do not provision resources
+cd ../infra/terraform
+terraform fmt -check -recursive
+terraform init -backend=false
+terraform validate
+```
+
+Running `terraform validate` does **not** create resources. Review IAM, HTTPS, persistent state, network placement and likely AWS costs before ever using `terraform apply`.
+
+## Repository map
+
+```text
 infralens-japan/
-├── frontend/          # React 18 + Vite (planned)
-├── backend/           # Node.js + Express API (planned)
-├── terraform/         # Infrastructure as Code (planned)
-├── docs/              # Architecture docs, ADRs, security, deployment
-├── .github/workflows/ # CI/CD pipelines (planned)
+├── frontend/             # React UI and simulation / scoring logic
+├── backend/              # Express APIs, PostgreSQL migrations, auth
+├── infra/
+│   ├── terraform/        # Actual Terraform infrastructure configuration
+│   └── bootstrap/        # Remote-state bucket bootstrap configuration
+├── terraform/            # Reserved module/environment placeholders
+├── docs/                 # Architecture, security, ADRs, deployment notes
+├── .github/workflows/     # CI and manual Terraform plan workflow
 ├── README.md
-├── README.ja.md
-├── LICENSE
-└── .gitignore
+└── README.ja.md
 ```
 
-## Author
+## Limits and next steps
 
-**Naiem Naimur Rahman**
-Based in Japan
-AWS Certified Cloud Practitioner · Preparing for AWS Solutions Architect Associate
+- Scores, diagrams, failure outcomes and costs are **educational approximations**; the app does not inspect a customer's real AWS account.
+- Dashboard figures are **sample data**, not live metrics from AWS services.
+- The Terraform code is written and checked, but the documented full AWS deployment is **not complete/verified**.
+- Production work remains: HTTPS/ACM, secure secrets, hardened IAM, durable state, infrastructure cost review, and end-to-end deployment validation.
+- See [production-readiness notes](docs/production-readiness.md) for the detailed outstanding checklist.
+
+## Developer
+
+**Naiem Naimur Rahman** · Based in Japan
+[AWS Certified Cloud Practitioner](https://www.credly.com/badges/6dc4e6f5-364e-42a1-be12-8cc826d5a990/public_url) · Preparing for Solutions Architect – Associate
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE).
-
-Copyright © 2026 Naiem Naimur Rahman
+MIT — see [LICENSE](LICENSE). Copyright © 2026 Naiem Naimur Rahman.

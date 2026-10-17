@@ -1,143 +1,159 @@
 # InfraLens Japan
 
-**日本語・英語のバイリンガル対応 AWS アーキテクチャ診断・学習プラットフォーム。**
+**AWSのアーキテクチャを学習・評価する、日英バイリンガル対応の個人開発アプリケーションです。** クラウド／インフラエンジニアを目指すための学習・ポートフォリオプロジェクトとして作成しています。
 
-> ⚠️ **プロジェクトステータス：全30日中 Day 25 まで完了。デプロイ可能なインフラ構成とCIを実装済みですが、実際のAWS環境へのデプロイはまだ行っていません。** 以下に記載する機能の大部分は**計画中**であり、**まだ実装されていません**。開発の進行に合わせて本READMEも更新されます。
+**[GitHub](https://github.com/Naiem00/infralens-japan)** · **[English README](README.md)** · **[アーキテクチャ資料](docs/architecture.md)**
 
-> 本プロジェクトは **Amazon Web Services（AWS）と提携・承認・後援関係にはありません**。個人の学習・ポートフォリオ目的で開発されている独立したプロジェクトです。
+**リポジトリに記載されているデモURL：** https://d24vwnzgbvotf9.cloudfront.net
+**プロジェクトのホームページURL：** https://infralens-japan.vercel.app
 
----
+> **公開・デプロイ状況について：** 上記URLの現在の稼働状況は、本ドキュメント更新時に独立して確認できていません。アプリケーションの実装コードとTerraformの定義ファイルは存在しますが、リポジトリ内のインフラ資料によると、**Terraformで定義したAWS環境全体の本番デプロイは未完了**です。URLが存在することと、全AWSリソースの構築完了は別のことです。
+>
+> 本プロジェクトは個人の学習用プロジェクトであり、AWSによる承認・後援を受けたものではありません。
 
 ## 概要
 
-InfraLens Japan は、日本国内のクラウドエンジニア・インフラエンジニア・AWSエンジニア・ジュニアDevOps／プラットフォームエンジニア職への応募を目的として、実践的なクラウド・インフラ・フルスタック・AWS・Terraform・セキュリティ・CI/CDのスキルを示すために開発しているポートフォリオプロジェクトです。
+AWSを想定した構成を選択し、信頼性・セキュリティ・コスト効率・性能・運用について、**ルールに基づく説明可能な診断と改善提案**を表示します。実際のAWSアカウントを自動監査するサービスではなく、設計判断を学ぶ教育用シミュレーターです。
 
-ユーザーはAWS風のアーキテクチャを構成し、信頼性・セキュリティ・コスト効率・パフォーマンス・運用成熟度について、**ランダムではなく明確なルールに基づいた、説明可能なフィードバック**を受け取ることができます。単にAWSサービスの定義を暗記するのではなく、アーキテクチャ上の意思決定そのものを理解できるようにすることが目的です。
+## 実装状況
 
-## 目的
+| 機能 | ソースコード上の状況 | 補足 |
+| --- | --- | --- |
+| 日本語／英語の切り替え | ✅ 実装済み | i18nextと翻訳リソース |
+| ダッシュボードとグラフ | ✅ 実装済み | **サンプルデータ**を表示 |
+| アーキテクチャアナライザー | ✅ 実装済み | サービス選択・構成・入力検証 |
+| 診断スコアリング | ✅ 実装済み | 決定論的ルールエンジン |
+| 改善提案エンジン | ✅ 実装済み | 優先度と理由を提示 |
+| アーキテクチャ可視化 | ✅ 実装済み | 図を表示するコンポーネント |
+| 障害シミュレーター | ✅ 実装済み | 固定デモ構成を用いたシミュレーション（実AWSへの障害注入ではありません） |
+| AWSサービス比較 | ✅ 実装済み | 学習用の比較表 |
+| コスト計算機 | ✅ 実装済み | **サンプル料金による概算**（AWS実料金APIは未使用） |
+| 本番運用チェックリスト | ✅ 実装済み | セキュリティ・信頼性・運用 |
+| Express API／PostgreSQL連携 | ✅ コード実装済み | 稼働中のDB接続は未検証 |
+| 認証・保存アーキテクチャ | ✅ バックエンドコード実装済み | 本番環境との統合は未検証 |
+| Terraform AWSインフラ定義 | ✅ 記述済み | `terraform apply` の実行・本番展開は未確認 |
+| GitHub Actions CI | ✅ 実行履歴を確認 | 成功したCI実行履歴あり |
+| OIDCによるTerraform実行 | 🚧 計画用Workflowあり | `terraform plan` のみ。自動 `apply` はありません |
 
-本プロジェクトを通じて、以下について実践的な理解を示すことを目指しています。
+## 使用技術
 
-- AWSアーキテクチャとクラウドネットワーキング
-- 高可用性と耐障害性
-- AWSセキュリティのベストプラクティス
-- モニタリングと可観測性
-- Infrastructure as Code（Terraform）
-- CI/CD（OIDC認証を用いたGitHub Actions）
-- コスト最適化
-- アプリケーションのデプロイ
-- データベース設計
-- フロントエンド・バックエンドの統合
-- 日英バイリンガルアプリケーション開発
+- **フロントエンド：** React 18、Vite、React Router 6、i18next、Chart.js
+- **バックエンド：** Node.js、Express、REST API、JWT／bcrypt
+- **データベース：** PostgreSQL（AWS RDSはインフラ設計上の構成要素）
+- **IaC：** Terraform（実際の定義ファイルは `infra/terraform/`）
+- **AWS設計：** VPC、パブリック／プライベートサブネット、S3、CloudFront、ECR、ECS Fargate、ALB、RDS、CloudWatch
+- **自動化：** GitHub Actions CI、OIDCを利用したTerraform **plan** ワークフロー
 
-本プロジェクトにおける重要な技術的判断は、すべて技術面接で説明できることを想定しています（例：*なぜEC2ではなくECS Fargateを選んだのか*、*なぜRDSをプライベートサブネットに配置するのか*、*なぜMulti-AZが重要なのか*、*なぜGitHub Actionsで固定のAWSキーではなくOIDCを使うのか* など）。
+## アーキテクチャ
 
-## 計画中の機能
+アプリケーションの概念図：
 
-- 📊 **ダッシュボード** — アーキテクチャ・診断の活動状況、スコア履歴 *（計画中）*
-- 🏗️ **アーキテクチャアナライザー** — AWSサービス（コンピュート・データベース・ストレージ・ネットワーキング・配信・セキュリティ・モニタリング・メッセージング）の構成 *（計画中）*
-- ✅ **アーキテクチャ診断** — 明確なルールに基づく決定論的スコアリング（信頼性・セキュリティ・コスト効率・パフォーマンス・運用） *（計画中）*
-- 💡 **改善提案エンジン** — Critical／High Priority／Recommended／Consider の4段階、各項目に説明とAWS概念を付与 *（実装済み、Day 8）*
-- 🗺️ **アーキテクチャ可視化** — トラフィックの流れ、AZ構成、パブリック／プライベート境界を示す自動生成図 *（計画中）*
-- 💥 **障害シミュレーター** — EC2／ECS／RDS／AZ障害などをシミュレートし、影響範囲を可視化 *（計画中）*
-- ⚖️ **AWSサービス比較** — 試験対策にとどまらない、実践的なアーキテクチャ上のトレードオフ比較（EC2 vs ECS vs Lambda、RDS vs DynamoDBなど） *（計画中）*
-- 💰 **コスト計算機** — 円建ての簡易コスト見積もり（サンプルデータであることを明示） *（計画中）*
-- 📋 **本番運用readinessチェックリスト** — セキュリティ・信頼性・モニタリング・運用の観点で評価 *（計画中）*
-- 🔐 **認証機能** — アーキテクチャ・診断結果の保存 *（将来実装予定）*
-
-## 想定技術スタック
-
-**フロントエンド：** React 18、Vite、React Router v6、i18next、Chart.js、JavaScript（TypeScriptは使用しません）
-**バックエンド：** Node.js、Express、REST API、レイヤードアーキテクチャ（routes/controllers/services/repositories）
-**データベース：** PostgreSQL（本番環境ではAmazon RDS）
-**Infrastructure as Code：** Terraform（モジュール化・環境分離：dev/prod）
-**クラウドプロバイダー：** AWS、主要リージョンは `ap-northeast-1`（東京）
-**CI/CD：** GitHub Actions、**OIDCフェデレーション**によるAWS認証（固定のAWSアクセスキーは使用しません）
-
-## 想定AWSアーキテクチャ
-
-現時点での高レベルなターゲットアーキテクチャです（開発の進行に応じて見直される可能性があります）。
-
-```
-フロントエンド配信：
-ユーザー → Route 53 → CloudFront → S3（静的フロントエンド）
-
-バックエンド配信：
-ユーザー → ALB → ECS Fargate（バックエンドAPI） → RDS PostgreSQL（プライベートサブネット、Multi-AZ）
+```text
+Reactフロントエンド（日英対応）
+  ├── ダッシュボード（サンプルデータ）
+  ├── AWS構成診断・改善提案
+  ├── 障害シミュレーター、サービス比較、概算コスト
+  └── Express REST API
+                 └── PostgreSQL（開発用／ホスティングを想定）
 ```
 
-補助サービス（計画中）：パブリック／プライベートサブネットを持つVPC、Internet Gateway、NAT Gateway、IAM（最小権限の原則）、Secrets Manager、KMS、CloudWatch、ACM、WAF。
+**Terraformに記述されているAWS構成案（全体の稼働確認は未完了）：**
 
-インフラに関する意思決定が進むにつれ、詳細なアーキテクチャ図とArchitecture Decision Records（ADR）を `docs/` 配下に追加していきます。
+```text
+ユーザー → CloudFront → 非公開S3（OAC）
+                |
+                +→ /api/* → ALB → ECS Fargate API → 非公開RDS PostgreSQL
 
-## バイリンガル対応
+VPC：複数AZのパブリック／プライベートサブネット
+運用：CloudWatch、IAMロール、ストレージ暗号化
+```
 
-UI全体を `i18next` を用いて**英語**と**日本語**の両方で動作させることを計画しています。ユーザーに表示されるサンプルデータには、必ず**「Sample Data／サンプルデータ」**の表示を付けます。
+開発用の簡略ネットワーク設計を採用しています。現状のALBリスナーはHTTPであり、本番運用前にHTTPS、ネットワーク、IAMなどのセキュリティ見直しが必要です。詳細は[アーキテクチャ資料](docs/architecture.md)と[本番運用の確認事項](docs/production-readiness.md)を参照してください。
 
-## サンプルデータに関する免責事項
+## ローカルでの起動
 
-本アプリケーションに表示される統計情報、コスト見積もり、診断履歴、利用状況などは、デモンストレーション目的で作成された**架空のサンプルデータ**です。**実際のAWS料金ではなく**、**実際の顧客データでもありません**。コストに関する数値には必ず**「Sample Estimate／サンプル見積もり」**と明記し、実際のAWS料金については必ずAWS公式の料金ページで確認してください。
+**必要な環境：** Node.js 22+、npm、PostgreSQL（DB連携機能の確認時）。
 
-## プロジェクトステータス
+```bash
+# バックエンド（ターミナル1）
+cd backend
+npm ci
+cp .env.example .env
+# DATABASE_URL、JWT_SECRET等を設定してから実行
+npm run db:migrate
+npm run dev
 
-| 機能 | ステータス |
-| --- | --- |
-| リポジトリ雛形 | ✅ 完了（Day 1） |
-| フロントエンドセットアップ | ✅ 完了（Day 2） |
-| デザインシステム | ✅ 完了（Day 3） |
-| 日英バイリンガル対応 | ✅ 完了（Day 4） |
-| ダッシュボード | ✅ 完了（Day 5） |
-| アーキテクチャアナライザー | ✅ 完了（Day 6） |
-| 診断ルールエンジン | ✅ 完了（Day 7） |
-| 改善提案エンジン | ✅ 完了（Day 8） |
-| アーキテクチャ可視化 | ✅ 完了（Day 9） |
-| 障害シミュレーター | ✅ 完了（Day 10） |
-| AWSサービス比較 | ✅ 完了（Day 11） |
-| コスト計算機 | ✅ 完了（Day 12） |
-| Backend / Express API | ✅ 完了（Day 13） |
-| PostgreSQL Database | ✅ 完了（Day 14） |
-| Assessment API | ✅ 完了（Day 15） |
-| 認証機能 | ✅ 完了（Day 16） |
-| Saved Architectures | ✅ 完了（Day 17） |
-| Frontend / Backend Integration | ✅ 完了（Day 18） |
-| Integration Testing | ✅ 完了（Day 19） |
-| Terraform Networking | ✅ 完了（Day 20） |
-| フロントエンドホスティング基盤 | ✅ 完了（Day 21） |
-| バックエンドホスティング基盤 | ✅ 完了（Day 22） |
-| RDS PostgreSQL基盤 | ✅ 完了（Day 23） |
-| モニタリング・セキュリティ基盤 | ✅ 完了（Day 24） |
-| GitHub Actions CI | ✅ 完了（Day 25） |
-| OIDCデプロイワークフロー | ⏳ Day 26 |
-| ドキュメント / ADR | ⏳ Day 27 |
-| 本番レビュー | ⏳ Day 28 |
-| ポリッシュ / アクセシビリティ | ⏳ Day 29 |
-| 最終デプロイ / ポートフォリオ | ⏳ Day 30 |
+# フロントエンド（リポジトリのルートから、ターミナル2）
+cd frontend
+npm ci
+cp .env.example .env
+npm run dev
+```
 
-開発は段階的な日次ロードマップに沿って進めます。進捗はコミット履歴および今後 `docs/` 配下に追加されるドキュメントをご参照ください。
+環境変数の例は[`backend/.env.example`](backend/.env.example)と[`frontend/.env.example`](frontend/.env.example)にあります。秘密情報はGitにコミットしないでください。バックエンドの開発用JWTデフォルト値を本番で使用しないでください。
+
+## テスト・検証
+
+[GitHub Actions CI](.github/workflows/ci.yml)ではフロントエンド、バックエンド、Terraformの検証を定義しています。過去の成功履歴は[Actions](https://github.com/Naiem00/infralens-japan/actions)で確認できます。ただし、CI成功は本番環境の正常稼働を保証するものではありません。
+
+```bash
+# バックエンド（ローカル環境を適切に設定）
+cd backend
+npm ci
+npm run verify
+node scripts/verifyAssessmentApi.mjs
+node scripts/verifyAuth.mjs
+node scripts/verifySavedArchitectures.mjs
+
+# フロントエンド
+cd ../frontend
+npm ci
+node scripts/verifyAssessment.mjs
+node scripts/verifyRecommendations.mjs
+node scripts/verifyFailureSimulator.mjs
+node scripts/verifyServiceCompare.mjs
+node scripts/verifyCostCalculator.mjs
+node scripts/verifyVisualization.mjs
+npm run build
+
+# Terraform（定義ファイルの検証のみ。AWSリソースは作成しません）
+cd ../infra/terraform
+terraform fmt -check -recursive
+terraform init -backend=false
+terraform validate
+```
+
+`terraform validate` はAWSリソースを作成しません。`terraform apply` の前にIAM権限、HTTPS、状態ファイルの永続化、費用を十分に確認する必要があります。
 
 ## リポジトリ構成
 
-```
+```text
 infralens-japan/
-├── frontend/          # React 18 + Vite（計画中）
-├── backend/           # Node.js + Express API（計画中）
-├── terraform/         # Infrastructure as Code（計画中）
-├── docs/              # アーキテクチャ資料、ADR、セキュリティ、デプロイ関連
-├── .github/workflows/ # CI/CDパイプライン（計画中）
+├── frontend/           # React UI／ルール・シミュレーション
+├── backend/            # Express API、DB、認証
+├── infra/
+│   ├── terraform/      # 実際のTerraform定義ファイル
+│   └── bootstrap/      # Terraform state用S3の定義
+├── terraform/          # 今後のモジュール／環境分離用の雛形
+├── docs/               # 設計資料、ADR、セキュリティ
+├── .github/workflows/  # CIおよび手動Terraform plan
 ├── README.md
-├── README.ja.md
-├── LICENSE
-└── .gitignore
+└── README.ja.md
 ```
 
-## 作者
+## 制限事項と今後の課題
 
-**Naiem Naimur Rahman（ナイーム・ナイムル・ラーマン）**
-日本在住
-AWS認定クラウドプラクティショナー取得済み・AWS認定ソリューションアーキテクト – アソシエイト取得に向けて学習中
+- 診断結果、図、障害の影響、費用は**学習用のモデル・概算**であり、実AWSアカウントの状態を分析していません。
+- ダッシュボードの数値は**サンプルデータ**であり、実運用メトリクスではありません。
+- Terraformの定義は記述・検証されていますが、AWS環境全体への展開は**未完了／未確認**です。
+- 本番運用前にHTTPS／ACM、秘密情報管理、IAM最小権限、Terraform state管理、AWS費用・運用の確認が必要です。
+- 詳細は[Production Readiness Review](docs/production-readiness.md)を参照してください。
+
+## 開発者
+
+**Naiem Naimur Rahman（ナイエム・ナイムル・ラーマン）** · 日本在住
+[AWS認定クラウドプラクティショナー](https://www.credly.com/badges/6dc4e6f5-364e-42a1-be12-8cc826d5a990/public_url) 取得済み／AWS認定ソリューションアーキテクト – アソシエイト 学習中
 
 ## ライセンス
 
-本プロジェクトは [MITライセンス](./LICENSE) の下で公開されています。
-
-Copyright © 2026 Naiem Naimur Rahman
+MITライセンス。[LICENSE](LICENSE) をご参照ください。Copyright © 2026 Naiem Naimur Rahman.
